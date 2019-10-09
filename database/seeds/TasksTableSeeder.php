@@ -16,7 +16,7 @@ class TasksTableSeeder extends Seeder
         [
             [
             'task_code'        =>   'WEB00001',
-            'title'            =>   'What is Lorem Ipsum?',
+            'title'            =>   'This is first seed?',
             'type'             =>   'web development',
             'priority'         =>   'low',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
