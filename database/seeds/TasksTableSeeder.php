@@ -33,6 +33,7 @@ class TasksTableSeeder extends Seeder
                                     The generated Lorem Ipsum is therefore always free from repetition, 
                                     injected humour, or non-characteristic words etc.',
             'estimated_hours'  =>  50,
+            'task_status'      =>  'created',
             ],
 
             [
@@ -54,6 +55,7 @@ class TasksTableSeeder extends Seeder
                                     The generated Lorem Ipsum is therefore always free from repetition, 
                                     injected humour, or non-characteristic words etc.',
             'estimated_hours'  =>  75,
+            'task_status'      =>  'created',
             ],
 
             [
@@ -75,6 +77,7 @@ class TasksTableSeeder extends Seeder
                                     The generated Lorem Ipsum is therefore always free from repetition, 
                                     injected humour, or non-characteristic words etc.',
             'estimated_hours'  =>  150,
+            'task_status'      =>  'created',
             ],
 
             [
@@ -96,6 +99,7 @@ class TasksTableSeeder extends Seeder
                                     The generated Lorem Ipsum is therefore always free from repetition, 
                                     injected humour, or non-characteristic words etc.',
             'estimated_hours'  =>  100,
+            'task_status'      =>  'assigned',
             ],
 
             [
@@ -117,6 +121,7 @@ class TasksTableSeeder extends Seeder
                                     The generated Lorem Ipsum is therefore always free from repetition, 
                                     injected humour, or non-characteristic words etc.',
             'estimated_hours'  =>  60,
+            'task_status'      =>  'assigned',
             ],
 
             [
@@ -138,6 +143,7 @@ class TasksTableSeeder extends Seeder
                                     The generated Lorem Ipsum is therefore always free from repetition, 
                                     injected humour, or non-characteristic words etc.',
             'estimated_hours'  =>  80,
+            'task_status'      =>  'assigned',
             ],
 
             [
@@ -159,6 +165,7 @@ class TasksTableSeeder extends Seeder
                                     The generated Lorem Ipsum is therefore always free from repetition, 
                                     injected humour, or non-characteristic words etc.',
             'estimated_hours'  =>  120,
+            'task_status'      =>  'completed',
             ],
 
             [
@@ -180,6 +187,7 @@ class TasksTableSeeder extends Seeder
                                     The generated Lorem Ipsum is therefore always free from repetition, 
                                     injected humour, or non-characteristic words etc.',
             'estimated_hours'  =>  90,
+            'task_status'      =>  'completed',
             ],
         ];
             
