@@ -11,7 +11,7 @@
         </div>
         <div class="d-flex align-items-center">
           <!-- START User Info-->
-          <div class="pull-left p-r-10 fs-14 font-heading">
+          <div class="pull-left p-r-10 fs-14 font-heading hidden-sm-down">
             <span class="semi-bold">David</span> <span class="text-master">Nest</span>
           </div>
           <div class="dropdown pull-right hidden-md-down">
