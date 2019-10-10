@@ -4,14 +4,14 @@
         </a>
         <!-- END MOBILE SIDEBAR TOGGLE -->
         <div class="">
-          <div class="brand inline   ">
+          <div class="brand inline">
             <!-- <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22"> -->
             <h4><b>Task Man</b></h4>
           </div>          
         </div>
         <div class="d-flex align-items-center">
           <!-- START User Info-->
-          <div class="pull-left p-r-10 fs-14 font-heading hidden-md-down">
+          <div class="pull-left p-r-10 fs-14 font-heading">
             <span class="semi-bold">David</span> <span class="text-master">Nest</span>
           </div>
           <div class="dropdown pull-right hidden-md-down">
