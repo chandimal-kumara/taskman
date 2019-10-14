@@ -72,6 +72,7 @@ class TaskController extends Controller
         }
         catch(\Exception $e)
         {
+            dd($e->getMessage());
             DB::rollback();
             return redirect('/add')->with('error','Something Went Wrong!');
         }  
