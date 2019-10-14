@@ -43,7 +43,7 @@
             <span class="icon-thumbnail"><i class="fa fa-tasks"></i></span>
             <ul class="sub-menu">
                 <li class="">
-                    <a href="#">Create Task</a>
+                    <a href="{{ '/add' }}">Create Task</a>
                     <span class="icon-thumbnail"><i class="fa fa-plus-square"></i></span>
                 </li>
                 <li class="">

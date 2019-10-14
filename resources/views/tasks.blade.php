@@ -18,7 +18,7 @@
 <!-- END JUMBOTRON -->
 
 <div class=" container-fluid   container-fixed-lg">
-<h3><span class="semi-bold">Tasks</span> Control Panel</h3> 
+<h3><span class="semi-bold">Tasks</span> Panel</h3> 
 <br>
 
 <div class="card card-transparent ">
@@ -40,12 +40,13 @@
       <div class=" container-fluid container-fixed-lg">
             <!-- START card -->
             <div class="card card-transparent">
-              <div class="card-header ">
+              <div class="card-header">
                 <div class="card-title">Created not Assigned
                 </div>
                 <div class="pull-right">
                   <div class="col-xs-12">
-                    <button id="show-modal" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i>&nbsp;Add Task</button>
+                    <a href="{{ '/add' }}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i>&nbsp;Create Task</a>
+                    <!-- <button href="{{ '/add' }}" id="show-modal" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i>&nbsp;Add Task</button> -->
                   </div>
                 </div>
                 <div class="clearfix"></div>

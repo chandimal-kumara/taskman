@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Task;
 use App\User;
+use App\Http\Controllers\Auth;
 use DB;
 use Validator;
 
@@ -24,8 +25,57 @@ class TaskController extends Controller
     public function index()
     {
         return view('index');
-        //return view('test');
     }
+
+    public function add()
+    {
+        return view('add');
+    }
+
+    public function addTask( Request $request )
+    {
+        DB::beginTransaction(); 
+        
+        try
+        {
+            $task = new Task();
+            $task->title            = $request->get('title');
+            $task->type             = $request->get('type');
+            $task->priority         = $request->get('priority');
+            $task->description      = $request->get('description');
+            $task->content          = $request->get('content');
+            $task->estimated_hours  = $request->get('hours');
+            $task->created          = \Auth::user()->id;
+
+            $task->save();
+
+            $str = $request->type;
+            $zero = "";
+            $lenght= strlen($task->id);
+          
+            if ($lenght!=5) 
+            {
+                for ($i=0; $i < 5-$lenght; $i++) 
+                { 		
+                    $zero .= "0";
+                }
+            }
+          
+            $code = $str.$zero.$task->id;
+            $task->task_code    = $code;
+
+            $task->save(); 
+              
+            DB::commit();
+ 
+            return redirect('/tasks')->with('success', 'Student is Successfully Saved');
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+            return redirect('/add')->with('error','Something Went Wrong!');
+        }  
+    } 
 
     public function tasks()
     {
@@ -37,7 +87,7 @@ class TaskController extends Controller
         return view('tasks')->with('task1', $task1)->with('task2', $task2)->with('task3', $task3);
     }
 
-    public function store( Request $request )
+   /*  public function store( Request $request )
     {
         $validator = Validator::make($request->all(), [
             'title'         => 'required|max:100',
@@ -70,7 +120,7 @@ class TaskController extends Controller
             DB::rollback();
             return redirect::to('/home')->withInput()->with('error', 'Something Went Wrong')->with('tabName', 'menu1');
         }
-    }
+    } */
 
     public function destroy($id)
     {

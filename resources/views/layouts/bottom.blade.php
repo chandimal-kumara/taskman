@@ -28,6 +28,7 @@
 <script src="assets/js/scripts.js" type="text/javascript"></script>
 <script src="assets/js/datatables.js" type="text/javascript"></script>
 <script src="assets/js/form_elements.js" type="text/javascript"></script>
+<script src="assets/js/form_layouts.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS -->
 <script src="assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery-autonumeric/autoNumeric.js"></script>
@@ -44,6 +45,3 @@
 <script src="assets/plugins/bootstrap-typehead/typeahead.bundle.min.js"></script>
 <script src="assets/plugins/bootstrap-typehead/typeahead.jquery.min.js"></script>
 <script src="assets/plugins/handlebars/handlebars-v4.0.5.js"></script>
-
-    
-    
