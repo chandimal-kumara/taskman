@@ -34,6 +34,21 @@ class TaskController extends Controller
 
     public function addTask( Request $request )
     {
+        $validator = Validator::make($request->all(), [
+            'title'             => 'required|string|min:10',
+            'type'              => 'required|not_in:Choose...',
+            'priority'          => 'required',
+            'description'       => 'required|min:50', 
+            'content'           => 'required|min:100',
+            'hours'             => 'required|numeric',
+        ]);
+        
+        if($validator->fails())
+        {
+           // dd($validator);
+            return redirect::to('/add')->withErrors($validator)->withInput()->with('error', 'Please Check Validation Requirments');
+        }
+
         DB::beginTransaction(); 
         
         try
@@ -68,13 +83,13 @@ class TaskController extends Controller
               
             DB::commit();
  
-            return redirect('/tasks')->with('success', 'Student is Successfully Saved');
+            return redirect('/tasks')->with('success', 'Task is Successfully Saved');
         }
         catch(\Exception $e)
         {
            // dd($e->getMessage());
             DB::rollback();
-            return redirect('/add')->with('error','Something Went Wrong!');
+            return redirect('/add')->withInput()->with('error','Something Went Wrong!');
         }  
     } 
 
