@@ -37,7 +37,7 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div class="tab-pane slide-left active" id="slide1">
-      <div class=" container-fluid container-fixed-lg">
+      <div class="container-fluid container-fixed-lg">
             <!-- START card -->
             <div class="card card-transparent">
               <div class="card-header">
@@ -64,13 +64,13 @@
                 <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
                   <thead>
                     <tr>
-                      <th class="task_th">Task ID</th>
-                      <th>Title</th>
-                      <th>type</th>
-                      <th>priority</th>
-                      <th>Description</th>
-                      <th>Content</th>
-                      <th>Estimate Hours</th>
+                      <th class="task_th_1">Task ID</th>
+                      <th class="task_th_2">Title</th>
+                      <th class="task_th_1">type</th>
+                      <th class="task_th_1">priority</th>
+                      <th class="task_th_2">Description</th>
+                      <th class="task_th_2">Content</th>
+                      <th class="task_th_1">Estimate Hours</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -81,19 +81,21 @@
                         <p>{{$task->task_code}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->title, 10)}}</p>
+                        <p>{{str_limit($task->title, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{$task->type}}</p>
+                        @foreach($types as $type)
+                        <p>@if ($task->type == $type->code) {{$type->name}} @endif</p> 
+                        @endforeach
                       </td>
                       <td class="v-align-middle">
-                        <p>{{$task->priority}}</p>
+                        <p>@if ($task->priority == 'LW') low @endif @if ($task->priority == 'MD') Medium @endif @if ($task->priority == 'HG') High @endif</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->description,15)}}</p>
+                        <p>{{str_limit($task->description,25)}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->content, 15)}}</p>
+                        <p>{{str_limit($task->content, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{$task->estimated_hours}}</p>
@@ -124,24 +126,24 @@
               </div>
               <div class="card-block">
 
-              @if(session()->get('success'))
+             <!--  @if(session()->get('success'))
                 <div class="alert alert-success" role="alert">
                   <button class="close" data-dismiss="alert"></button>
                   <strong>Success: </strong>
                     {{ session()->get('success') }}  
                 </div>
-              @endif
+              @endif -->
 
                 <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
                   <thead>
                     <tr>
-                      <th class="task_th">Task ID</th>
-                      <th>Title</th>
-                      <th>type</th>
-                      <th>priority</th>
-                      <th>Description</th>
-                      <th>Content</th>
-                      <th>Estimate Hours</th>
+                      <th class="task_th_1">Task ID</th>
+                      <th class="task_th_2">Title</th>
+                      <th class="task_th_1">type</th>
+                      <th class="task_th_1">priority</th>
+                      <th class="task_th_2">Description</th>
+                      <th class="task_th_2">Content</th>
+                      <th class="task_th_1">Estimate Hours</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -152,19 +154,21 @@
                         <p>{{$task->task_code}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->title, 10)}}</p>
+                        <p>{{str_limit($task->title, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{$task->type}}</p>
+                        @foreach($types as $type)
+                        <p>@if ($task->type == $type->code) {{$type->name}} @endif</p> 
+                        @endforeach
                       </td>
                       <td class="v-align-middle">
-                        <p>{{$task->priority}}</p>
+                        <p>@if ($task->priority == 'LW') low @endif @if ($task->priority == 'MD') Medium @endif @if ($task->priority == 'HG') High @endif</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->description,15)}}</p>
+                        <p>{{str_limit($task->description,25)}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->content, 15)}}</p>
+                        <p>{{str_limit($task->content, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{$task->estimated_hours}}</p>
@@ -195,24 +199,24 @@
               </div>
               <div class="card-block">
 
-              @if(session()->get('success'))
+             <!--  @if(session()->get('success'))
                 <div class="alert alert-success" role="alert">
                   <button class="close" data-dismiss="alert"></button>
                   <strong>Success: </strong>
                     {{ session()->get('success') }}  
                 </div>
-              @endif
+              @endif -->
 
                 <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
                   <thead>
                     <tr>
-                      <th class="task_th">Task ID</th>
-                      <th>Title</th>
-                      <th>type</th>
-                      <th>priority</th>
-                      <th>Description</th>
-                      <th>Content</th>
-                      <th>Estimate Hours</th>
+                      <th class="task_th_1">Task ID</th>
+                      <th class="task_th_2">Title</th>
+                      <th class="task_th_1">type</th>
+                      <th class="task_th_1">priority</th>
+                      <th class="task_th_2">Description</th>
+                      <th class="task_th_2">Content</th>
+                      <th class="task_th_1">Estimate Hours</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -223,19 +227,21 @@
                         <p>{{$task->task_code}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->title, 10)}}</p>
+                        <p>{{str_limit($task->title, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{$task->type}}</p>
+                        @foreach($types as $type)
+                        <p>@if ($task->type == $type->code) {{$type->name}} @endif</p> 
+                        @endforeach
                       </td>
                       <td class="v-align-middle">
-                        <p>{{$task->priority}}</p>
+                        <p>@if ($task->priority == 'LW') low @endif @if ($task->priority == 'MD') Medium @endif @if ($task->priority == 'HG') High @endif</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->description,15)}}</p>
+                        <p>{{str_limit($task->description,25)}}</p>
                       </td>
                       <td class="v-align-middle">
-                        <p>{{str_limit($task->content, 15)}}</p>
+                        <p>{{str_limit($task->content, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{$task->estimated_hours}}</p>
@@ -254,85 +260,33 @@
     </div>
   </div>
 
-         <!--  <div class="modal fade stick-up" id="addNewAppModal" tabindex="-1" role="dialog" aria-labelledby="addNewAppModal" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header clearfix ">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-                  </button>
-                  <h4 class="p-b-5"><span class="semi-bold">New</span> App</h4>
-                </div>
-                <div class="modal-body">
-                  <p class="small-text">Create a new app using this form, make sure you fill them all</p>
-                  <form role="form">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group form-group-default">
-                          <label>name</label>
-                          <input id="appName" type="text" class="form-control" placeholder="Name of your app">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group form-group-default">
-                          <label>Description</label>
-                          <input id="appDescription" type="text" class="form-control" placeholder="Tell us more about it">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group form-group-default">
-                          <label>Price</label>
-                          <input id="appPrice" type="text" class="form-control" placeholder="your price">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group form-group-default">
-                          <label>Notes</label>
-                          <input id="appNotes" type="text" class="form-control" placeholder="a note">
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button id="add-app" type="button" class="btn btn-primary  btn-cons">Add</button>
-                  <button type="button" class="btn btn-cons" data-dismiss="modal">Close</button>
-                </div>
-              </div>  
+  <!-- /.start modal -->
+  <div class="modal fade stick-up" id="delete-task" tabindex="-1" role="dialog" aria-labelledby="addNewAppModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form action="" method="post" id="deleteForm">
+            <div class="modal-header clearfix ">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+              </button>
+              <h4 class="p-b-5"><span class="semi-bold">Delete</span> Confirmation</h4>
             </div>
-          </div>
-        </div>  -->
-
-        <div class="modal fade stick-up" id="delete-task" tabindex="-1" role="dialog" aria-labelledby="addNewAppModal" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <form action="" method="post" id="deleteForm">
-                  <div class="modal-header clearfix ">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-                    </button>
-                    <h4 class="p-b-5"><span class="semi-bold">Delete</span> Confirmation</h4>
-                  </div>
-                  <div class="modal-body">
-                      {{ csrf_field() }}
-                      {{ method_field('DELETE') }}
-                    <p>Are you sure want to delete this Task....</p>                  
-                  </div>
-                  <div class="modal-footer">
-                      <!-- <input type="hidden" name="task_id" id="task_id" value=""> -->
-                      <button type="submit" class="btn btn-danger">Yes, Delete It</button>
-                      <button type="button" name="" class="btn btn-primary" data-dismiss="modal">No, Keep It</button>
-                  </div>
-                </form>
-              </div>
-              <!-- /.modal-content -->
+            <div class="modal-body">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+              <p>Are you sure want to delete this Task....</p>                  
             </div>
-            <!-- /.modal-dialog -->
-          </div>
+            <div class="modal-footer">
+                <!-- <input type="hidden" name="task_id" id="task_id" value=""> -->
+                <button type="submit" class="btn btn-danger">Yes, Delete It</button>
+                <button type="button" name="" class="btn btn-primary" data-dismiss="modal">No, Keep It</button>
+            </div>
+          </form>
         </div>
-
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+  </div><!-- /.end modal -->
 </div>
 
 <script type="text/javascript">
@@ -346,5 +300,6 @@
   }
 
 </script>
+  
 
 @endsection

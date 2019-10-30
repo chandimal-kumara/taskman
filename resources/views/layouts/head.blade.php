@@ -7,6 +7,7 @@
 <link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
 <link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">

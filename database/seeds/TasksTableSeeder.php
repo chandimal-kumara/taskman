@@ -17,8 +17,8 @@ class TasksTableSeeder extends Seeder
             [
             'task_code'        =>   'WEB00001',
             'title'            =>   'This is first seed?',
-            'type'             =>   'web development',
-            'priority'         =>   'low',
+            'type'             =>   'WEB',
+            'priority'         =>   'LW',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
                                     It was popularised in the 1960s with the release of Letraset sheets 
                                     containing Lorem Ipsum passages, and more recently as opposed to using, 
@@ -39,8 +39,8 @@ class TasksTableSeeder extends Seeder
             [
             'task_code'        =>   'NET00002',
             'title'            =>   'Why do we use it?',
-            'type'             =>   'networking',
-            'priority'         =>   'medium',
+            'type'             =>   'NET',
+            'priority'         =>   'MD',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
                                     It was popularised in the 1960s with the release of Letraset sheets 
                                     containing Lorem Ipsum passages, and more recently as opposed to using, 
@@ -61,8 +61,8 @@ class TasksTableSeeder extends Seeder
             [
             'task_code'        =>   'SFT00003',
             'title'            =>   'What is Lorem Ipsum?',
-            'type'             =>   'softwear development',
-            'priority'         =>   'high',
+            'type'             =>   'SFT',
+            'priority'         =>   'HG',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
                                     It was popularised in the 1960s with the release of Letraset sheets 
                                     containing Lorem Ipsum passages, and more recently as opposed to using, 
@@ -83,8 +83,8 @@ class TasksTableSeeder extends Seeder
             [
             'task_code'        =>   'HRD00004',
             'title'            =>   'Where can I get some?',
-            'type'             =>   'hardware',
-            'priority'         =>   'medium',
+            'type'             =>   'HRD',
+            'priority'         =>   'MD',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
                                     It was popularised in the 1960s with the release of Letraset sheets 
                                     containing Lorem Ipsum passages, and more recently as opposed to using, 
@@ -105,8 +105,8 @@ class TasksTableSeeder extends Seeder
             [
             'task_code'        =>   'NET00005',
             'title'            =>   'Why do we use it?',
-            'type'             =>   'networking',
-            'priority'         =>   'low',
+            'type'             =>   'NET',
+            'priority'         =>   'LW',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
                                     It was popularised in the 1960s with the release of Letraset sheets 
                                     containing Lorem Ipsum passages, and more recently as opposed to using, 
@@ -127,8 +127,8 @@ class TasksTableSeeder extends Seeder
             [
             'task_code'        =>   'WEB00006',
             'title'            =>   'Where does it come from?',
-            'type'             =>   'web development',
-            'priority'         =>   'low',
+            'type'             =>   'WEB',
+            'priority'         =>   'LW',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
                                     It was popularised in the 1960s with the release of Letraset sheets 
                                     containing Lorem Ipsum passages, and more recently as opposed to using, 
@@ -149,8 +149,8 @@ class TasksTableSeeder extends Seeder
             [
             'task_code'        =>   'SFT00007',
             'title'            =>   'What is Lorem Ipsum?',
-            'type'             =>   'softwear development',
-            'priority'         =>   'low',
+            'type'             =>   'SFT',
+            'priority'         =>   'LW',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
                                     It was popularised in the 1960s with the release of Letraset sheets 
                                     containing Lorem Ipsum passages, and more recently as opposed to using, 
@@ -171,8 +171,8 @@ class TasksTableSeeder extends Seeder
             [
             'task_code'        =>   'HRD00008',
             'title'            =>   'Where does it come from?',
-            'type'             =>   'hardware',
-            'priority'         =>   'medium',
+            'type'             =>   'HRD',
+            'priority'         =>   'MD',
             'description'      =>   'into electronic typesetting, remaining essentially unchanged. 
                                     It was popularised in the 1960s with the release of Letraset sheets 
                                     containing Lorem Ipsum passages, and more recently as opposed to using, 

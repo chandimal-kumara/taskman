@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Task;
 use App\User;
+use App\TaskTypes;
 use App\Http\Controllers\Auth;
 use DB;
 use Validator;
@@ -27,9 +28,15 @@ class TaskController extends Controller
         return view('index');
     }
 
+   /*  public function view()
+    {
+        return view('index');
+    }
+ */
     public function add()
     {
-        return view('add');
+        $types = TaskTypes::get();
+        return view('add')->with('types', $types);
     }
 
     public function addTask( Request $request )
@@ -97,10 +104,11 @@ class TaskController extends Controller
     {
         //$tasks = Task::where('task_status', 'created')->find();
         //$tasks = Task::all();
+        $types = TaskTypes::get();
         $task1 = DB::table('tasks')->where('task_status', 'created')->get();
         $task2 = DB::table('tasks')->where('task_status', 'assigned')->get();
         $task3 = DB::table('tasks')->where('task_status', 'completed')->get();
-        return view('tasks')->with('task1', $task1)->with('task2', $task2)->with('task3', $task3);
+        return view('tasks')->with('task1', $task1)->with('task2', $task2)->with('task3', $task3)->with('types', $types);
     }
 
    /*  public function store( Request $request )

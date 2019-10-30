@@ -1,5 +1,9 @@
-.task_th {
+.task_th_1 {
     width: 10% !important;
+}
+
+.task_th_2 {
+    width: 20% !important;
 }
 
 .bg {
