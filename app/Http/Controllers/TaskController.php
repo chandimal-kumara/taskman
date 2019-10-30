@@ -28,11 +28,16 @@ class TaskController extends Controller
         return view('index');
     }
 
-   /*  public function view()
+    public function view($id)
     {
-        return view('index');
+        //$tasks = Task::where('id','=',$id)->first();
+        //$tasks = Task::first();
+        $data['tasks'] = Task::find($id);
+        //dd($tasks);
+        $data['types'] = TaskTypes::get();
+        return view('view', $data);   
     }
- */
+ 
     public function add()
     {
         $types = TaskTypes::get();

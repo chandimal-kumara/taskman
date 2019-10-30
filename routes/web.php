@@ -16,6 +16,7 @@ Auth::routes();
 Route::get('/', 'TaskController@index')->name('task.index');
 Route::get('/tasks', 'TaskController@tasks')->name('task.tasks');
 Route::get('/add', 'TaskController@add')->name('task.add');
+Route::get('/view/{id}', 'TaskController@view')->name('task.view');
 //Route::get('/view', 'TaskController@view')->name('task.view');
 Route::post('/add', 'TaskController@addTask')->name('task.addTask');
 Route::post('/home','TaskController@store')->name('task.store');

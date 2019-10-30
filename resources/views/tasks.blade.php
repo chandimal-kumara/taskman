@@ -18,7 +18,7 @@
 <!-- END JUMBOTRON -->
 
 <div class=" container-fluid   container-fixed-lg">
-<h3><span class="semi-bold">Tasks</span> Panel</h3> 
+<h3><span class="semi-bold"  style="margin-left: 2%;">Tasks</span> Panel</h3> 
 <br>
 
 <div class="card card-transparent ">

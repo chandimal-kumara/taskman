@@ -1,3 +1,8 @@
+<style>
+.menu-items li a span { color:white; }
+.menu-items li a span:hover { color:#D8DADC; }
+</style>
+
 <nav class="page-sidebar" data-pages="sidebar">
     <!-- BEGIN SIDEBAR MENU HEADER-->
     <div class="sidebar-header">
