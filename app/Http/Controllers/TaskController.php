@@ -28,23 +28,27 @@ class TaskController extends Controller
         return view('index');
     }
 
-    public function view($id)
+    public function view_task($id)
     {
-        //$tasks = Task::where('id','=',$id)->first();
-        //$tasks = Task::first();
         $data['tasks'] = Task::find($id);
-        //dd($tasks);
         $data['types'] = TaskTypes::get();
-        return view('view', $data);   
+        return view('view_task', $data);   
     }
  
-    public function add()
+    public function add_task()
     {
-        $types = TaskTypes::get();
-        return view('add')->with('types', $types);
+        $data['types'] = TaskTypes::get();
+        return view('add_task', $data);
     }
 
-    public function addTask( Request $request )
+    public function edit_task($id)
+    {
+        $data['tasks'] = Task::find($id);
+        $data['types'] = TaskTypes::get();
+        return view('edit_task', $data);
+    }
+
+    public function save_task( Request $request )
     {
         $validator = Validator::make($request->all(), [
             'title'             => 'required|string|min:10',
@@ -58,7 +62,7 @@ class TaskController extends Controller
         if($validator->fails())
         {
            // dd($validator);
-            return redirect::to('/add')->withErrors($validator)->withInput()->with('error', 'Please Check Validation Requirments');
+            return redirect::to('/tasks/add_task')->withErrors($validator)->withInput()->with('error', 'Please Check Validation Requirments');
         }
 
         DB::beginTransaction(); 
@@ -101,7 +105,51 @@ class TaskController extends Controller
         {
            // dd($e->getMessage());
             DB::rollback();
-            return redirect('/add')->withInput()->with('error','Something Went Wrong!');
+            return redirect('/tasks/add_task')->withInput()->with('error','Something Went Wrong!');
+        }  
+    }
+    
+    public function update_task( Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title'             => 'required|string|min:10',
+            'type'              => 'required|not_in:Choose...',
+            'priority'          => 'required',
+            'description'       => 'required|min:50', 
+            'content'           => 'required|min:100',
+            'hours'             => 'required|numeric',
+        ]);
+        
+        if($validator->fails())
+        {
+           // dd($validator);
+            return redirect::to('/tasks/update')->withErrors($validator)->withInput()->with('error', 'Please Check Validation Requirments');
+        }
+
+        DB::beginTransaction(); 
+        
+        try
+        {
+            $task = Task::find($id);
+            $task->title            = $request->get('title');
+            $task->type             = $request->get('type');
+            $task->priority         = $request->get('priority');
+            $task->description      = $request->get('description');
+            $task->content          = $request->get('content');
+            $task->estimated_hours  = $request->get('hours');
+            $task->created          = \Auth::user()->id;
+
+            $task->save();
+
+            DB::commit();
+ 
+            return redirect('/tasks')->with('success', 'Task is Successfully Updated');
+        }
+        catch(\Exception $e)
+        {
+           // dd($e->getMessage());
+            DB::rollback();
+            return redirect('tasks/update')->withInput()->with('error','Something Went Wrong!');
         }  
     } 
 
@@ -151,7 +199,7 @@ class TaskController extends Controller
         }
     } */
 
-    public function destroy($id)
+    public function destroy_task($id)
     {
         $tasks = Task::findOrFail($id);
         $tasks->delete();

@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+
+<style>
+  .link a { color:blue; }
+  .link a:hover { color:#6DC0F9; }
+</style>
 <!-- START JUMBOTRON -->
 <div class="jumbotron" data-pages="parallax">
   <div class=" container-fluid   container-fixed-lg sm-p-l-0 sm-p-r-0">
@@ -8,7 +13,7 @@
       <!-- START BREADCRUMB -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item link active"><a href="{{ route('task.index') }}">Dashboard</a></li>
       </ol>
       <!-- END BREADCRUMB -->
     </div>

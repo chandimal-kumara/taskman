@@ -2,6 +2,11 @@
 
 @section('content')
 
+<style>
+.link a { color:blue; }
+.link a:hover { color:#6DC0F9; }
+</style>
+
 <!-- START JUMBOTRON -->
 <div class="jumbotron" data-pages="parallax">
   <div class=" container-fluid   container-fixed-lg sm-p-l-0 sm-p-r-0">
@@ -9,7 +14,7 @@
       <!-- START BREADCRUMB -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-        <li class="breadcrumb-item active">Tasks</li>
+        <li class="breadcrumb-item active link"><a href="{{ route('task.tasks') }}">Tasks</a></li>
       </ol>
       <!-- END BREADCRUMB -->
     </div>
@@ -18,8 +23,7 @@
 <!-- END JUMBOTRON -->
 
 <div class=" container-fluid   container-fixed-lg">
-<h3><span class="semi-bold"  style="margin-left: 2%;">Tasks</span> Panel</h3> 
-<br>
+<!-- <h3><span class="semi-bold"  style="margin-left: 2%;">Tasks</span> Panel</h3>  -->
 
 <div class="card card-transparent ">
   <!-- Nav tabs -->
@@ -45,7 +49,7 @@
                 </div>
                 <div class="pull-right">
                   <div class="col-xs-12">
-                    <a href="{{ '/add' }}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i>&nbsp;Create Task</a>
+                    <a href="{{ route('task.add_task') }}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i>&nbsp;Create Task</a>
                     <!-- <button href="{{ '/add' }}" id="show-modal" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i>&nbsp;Add Task</button> -->
                   </div>
                 </div>
@@ -101,7 +105,7 @@
                         <p>{{$task->estimated_hours}}</p>
                       </td> 
                       <td class="v-align-middle">
-                          <a href="/assign/{{$task->id}}" class="btn btn-success"><i class="fa fa-paper-plane"></i></a>&nbsp;<a href="/view/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                          <a href="/assign/{{$task->id}}" class="btn btn-success"><i class="fa fa-paper-plane"></i></a>&nbsp;<a href="/tasks/view_task/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                       </td>     
                     </tr>
                     @endforeach 
@@ -294,7 +298,7 @@
   function deleteData(id)
   {
     var id = id;
-    var url = '{{ route("task.destroy", ":id") }}';
+    var url = '{{ route("task.destroy_task", ":id") }}';
     url = url.replace(':id', id);
     $("#deleteForm").attr('action', url);
   }

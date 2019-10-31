@@ -2,11 +2,11 @@
 <meta charset="utf-8" />
 <title>TaskMan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
-<link rel="apple-touch-icon" href="pages/ico/60.png">
-<link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
-<link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
-<link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
-<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link href="{{ asset('pages/ico/60.png') }}" rel="apple-touch-icon">
+<link href="{{ asset('pages/ico/76.png') }}"rel="apple-touch-icon" sizes="76x76">
+<link href="{{ asset('pages/ico/120.png') }}"rel="apple-touch-icon" sizes="120x120">
+<link href="{{ asset('pages/ico/152.png') }}"rel="apple-touch-icon" sizes="152x152">
+<link href="{{ asset('favicon.ico') }}"rel="icon" type="image/x-icon"/>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
