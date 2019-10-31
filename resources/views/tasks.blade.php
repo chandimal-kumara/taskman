@@ -29,13 +29,13 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs nav-tabs-fillup" data-init-reponsive-tabs="dropdownfx">
     <li class="nav-item">
-      <a href="#" class="active" data-toggle="tab" data-target="#slide1"><span>Created Tasks</span></a>
+      <a href="#" class="@if (empty($tabName) || $tabName == 'created') active @endif" data-toggle="tab" data-target="#slide1"><span>Created Tasks</span></a>
     </li>
     <li class="nav-item">
-      <a href="#" data-toggle="tab" data-target="#slide2"><span>Working Tasks</span></a>
+      <a href="#" class="@if (!empty($tabName) && $tabName == 'assigned') active @endif" data-toggle="tab" data-target="#slide2"><span>Working Tasks</span></a>
     </li>
     <li class="nav-item">
-      <a href="#" data-toggle="tab" data-target="#slide3"><span>Completed Tasks</span></a>
+      <a href="#" class="@if (!empty($tabName) && $tabName == 'completed') active @endif" data-toggle="tab" data-target="#slide3"><span>Completed Tasks</span></a>
     </li>
   </ul>
   <!-- Tab panes -->
@@ -178,7 +178,7 @@
                         <p>{{$task->estimated_hours}}</p>
                       </td> 
                       <td class="v-align-middle">
-                          <a href="/view/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                          <a href="/tasks/view_task/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                       </td>     
                     </tr>
                     @endforeach 
@@ -251,7 +251,7 @@
                         <p>{{$task->estimated_hours}}</p>
                       </td> 
                       <td class="v-align-middle">
-                        <a href="/view/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        <a href="/tasks/view_task/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                       </td>     
                     </tr>
                     @endforeach 

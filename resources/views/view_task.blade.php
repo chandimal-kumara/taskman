@@ -42,9 +42,13 @@
             <form method="post" action="{{ '' }}">
             {{csrf_field()}}
               <div class="row clearfix">         
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <p class="bold sm-p-t-20">Title</p>
                     <p>{{ $tasks->title }}</p>
+                </div>     
+                <div class="col-md-2">
+                    <p class="bold sm-p-t-20">Task Code</p>
+                    <p>{{ $tasks->task_code }}</p>
                 </div>
               </div><br>
               <div class="row">

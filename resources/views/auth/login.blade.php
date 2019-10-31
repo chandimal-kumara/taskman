@@ -86,9 +86,12 @@
             @enderror
             <div class="row">
               <div class="col-md-6 no-padding sm-p-l-10">
-                <div class="checkbox ">
-                <input class="form-check-input" value="1" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                  <label for="checkbox1">Keep Me Signed in</label>
+                 <div class="checkbox "> 
+                  <input class="form-check-input" value="1" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                  <label class="form-check-label" for="remember">
+                      {{ __('Remember Me') }}
+                  </label>
                 </div>
               </div>
               <div class="col-md-6 d-flex align-items-center justify-content-end">

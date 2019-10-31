@@ -52,11 +52,17 @@
         {{csrf_field()}}
         @method('PUT')
           <div class="row clearfix">         
-            <div class="col-md-12">
+            <div class="col-md-10">
               <div class="form-group form-group-default required @error('title') has-error @enderror">
                 <label>Title</label>
                 <input type="text" value="{{ $tasks->title }}" class="form-control" name="title" placeholder="Enter Task Title here" required>
                 @error('title')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group form-group-default required @error('title') has-error @enderror">
+                <label>Task Code</label>
+                <input style="color:gray;" type="text" value="{{ $tasks->task_code }}" class="form-control" name="task_code" readonly>
               </div>
             </div>
           </div>
