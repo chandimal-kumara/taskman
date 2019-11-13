@@ -64,16 +64,13 @@
             // `d` is the original data object for the row
             return '<table class="table table-inline">' +
                 '<tr>' +
-                '<td>Learn from real test data <span class="label label-important">ALERT!</span></td>' +
-                '<td>USD 1000</td>' +
+                '<td>View</td>' +
                 '</tr>' +
                 '<tr>' +
-                '<td>PSDs included</td>' +
-                '<td>USD 3000</td>' +
+                '<td>Edit</td>' +
                 '</tr>' +
                 '<tr>' +
-                '<td>Extra info</td>' +
-                '<td>USD 2400</td>' +
+                '<td>Delete</td>' +
                 '</tr>' +
                 '</table>';
         }

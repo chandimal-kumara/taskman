@@ -70,12 +70,10 @@
                     <tr>
                       <th class="task_th_1">Task ID</th>
                       <th class="task_th_2">Title</th>
-                      <th class="task_th_1">type</th>
-                      <th class="task_th_1">priority</th>
-                      <th class="task_th_2">Description</th>
-                      <th class="task_th_2">Content</th>
+                      <th class="task_th_2">type</th>
+                      <th class="task_th_2">priority</th>
                       <th class="task_th_1">Estimate Hours</th>
-                      <th>Actions</th>
+                      <th class="task_th_2">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -94,12 +92,6 @@
                       </td>
                       <td class="v-align-middle">
                         <p>@if ($task->priority == 'LW') low @endif @if ($task->priority == 'MD') Medium @endif @if ($task->priority == 'HG') High @endif</p>
-                      </td>
-                      <td class="v-align-middle">
-                        <p>{{str_limit($task->description,25)}}</p>
-                      </td>
-                      <td class="v-align-middle">
-                        <p>{{str_limit($task->content, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{$task->estimated_hours}}</p>
@@ -143,12 +135,10 @@
                     <tr>
                       <th class="task_th_1">Task ID</th>
                       <th class="task_th_2">Title</th>
-                      <th class="task_th_1">type</th>
-                      <th class="task_th_1">priority</th>
-                      <th class="task_th_2">Description</th>
-                      <th class="task_th_2">Content</th>
+                      <th class="task_th_2">type</th>
+                      <th class="task_th_2">priority</th>
                       <th class="task_th_1">Estimate Hours</th>
-                      <th>Actions</th>
+                      <th class="task_th_2">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -167,12 +157,6 @@
                       </td>
                       <td class="v-align-middle">
                         <p>@if ($task->priority == 'LW') low @endif @if ($task->priority == 'MD') Medium @endif @if ($task->priority == 'HG') High @endif</p>
-                      </td>
-                      <td class="v-align-middle">
-                        <p>{{str_limit($task->description,25)}}</p>
-                      </td>
-                      <td class="v-align-middle">
-                        <p>{{str_limit($task->content, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{$task->estimated_hours}}</p>
@@ -216,12 +200,10 @@
                     <tr>
                       <th class="task_th_1">Task ID</th>
                       <th class="task_th_2">Title</th>
-                      <th class="task_th_1">type</th>
-                      <th class="task_th_1">priority</th>
-                      <th class="task_th_2">Description</th>
-                      <th class="task_th_2">Content</th>
+                      <th class="task_th_2">type</th>
+                      <th class="task_th_2">priority</th>
                       <th class="task_th_1">Estimate Hours</th>
-                      <th>Actions</th>
+                      <th class="task_th_2">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -240,12 +222,6 @@
                       </td>
                       <td class="v-align-middle">
                         <p>@if ($task->priority == 'LW') low @endif @if ($task->priority == 'MD') Medium @endif @if ($task->priority == 'HG') High @endif</p>
-                      </td>
-                      <td class="v-align-middle">
-                        <p>{{str_limit($task->description,25)}}</p>
-                      </td>
-                      <td class="v-align-middle">
-                        <p>{{str_limit($task->content, 25)}}</p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{$task->estimated_hours}}</p>

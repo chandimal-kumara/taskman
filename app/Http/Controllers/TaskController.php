@@ -18,34 +18,38 @@ class TaskController extends Controller
         $this->middleware('auth');
     }
 
-    /* public function welcome()
-    {
-        return view('welcome');
-    } */
-
     public function index()
     {
         return view('index');
+    }
+
+    public function tasks()
+    {
+        $data['types'] = TaskTypes::get();
+        $data['task1'] = DB::table('tasks')->where('task_status', 'created')->get();
+        $data['task2'] = DB::table('tasks')->where('task_status', 'assigned')->get();
+        $data['task3'] = DB::table('tasks')->where('task_status', 'completed')->get();
+        return view('tasks/tasks', $data);
     }
 
     public function view_task($id)
     {
         $data['tasks'] = Task::find($id);
         $data['types'] = TaskTypes::get();
-        return view('view_task', $data);   
+        return view('tasks/view_task', $data);   
     }
  
     public function add_task()
     {
         $data['types'] = TaskTypes::get();
-        return view('add_task', $data);
+        return view('tasks/add_task', $data);
     }
 
     public function edit_task($id)
     {
         $data['tasks'] = Task::find($id);
         $data['types'] = TaskTypes::get();
-        return view('edit_task', $data);
+        return view('tasks/edit_task', $data);
     }
 
     public function save_task( Request $request )
@@ -153,17 +157,6 @@ class TaskController extends Controller
             return redirect('tasks/update')->withInput()->with('error','Something Went Wrong!');
         }  
     } 
-
-    public function tasks()
-    {
-        //$tasks = Task::where('task_status', 'created')->find();
-        //$tasks = Task::all();
-        $data['types'] = TaskTypes::get();
-        $data['task1'] = DB::table('tasks')->where('task_status', 'created')->get();
-        $data['task2'] = DB::table('tasks')->where('task_status', 'assigned')->get();
-        $data['task3'] = DB::table('tasks')->where('task_status', 'completed')->get();
-        return view('tasks', $data);
-    }
 
     public function destroy_task($id)
     {

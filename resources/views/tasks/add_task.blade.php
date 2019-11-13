@@ -37,7 +37,7 @@
         </li>
       </ul>
       <!-- Tab panes -->
-    <div class="tab-content">
+    <div class="tab-content"><br>
       <div class="tab-pane slide-left active" id="slide1">
         <div class=" container-fluid container-fixed-lg">
           <!-- START card -->
@@ -79,9 +79,9 @@
                 <div class="form-group form-group-default form-group-default-select2 required @error('priority') has-error @enderror">
                   <label>Priority</label>            
                   <select class="full-width" name="priority" data-placeholder="Select Priority" data-init-plugin="select2">                                        
-                    <option value="LW">Low</option>
-                    <option value="MD">Medium</option>                                                
-                    <option value="HG">High</option>                
+                    <option value="LW" @if (old('priority') == 'LW') selected @endif>Low</option>
+                    <option value="MD" @if (old('priority') == 'MD') selected @endif>Medium</option>                                                
+                    <option value="HG" @if (old('priority') == 'HG') selected @endif>High</option>                
                   </select>
                   @error('priority')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
                 </div>
@@ -127,5 +127,5 @@
   </div>
   <div class="col-lg-1"></div>
 </div>
-
+<br><br>
 @endsection

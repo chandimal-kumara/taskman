@@ -23,6 +23,9 @@
 <!-- END VENDOR JS -->
 <!-- BEGIN CORE TEMPLATE JS -->
 <script src="{{ asset('pages/js/pages.min.js') }}"></script>
+<script src="{{ asset('assets/js/tables.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/scripts.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/form_layouts.js') }}" type="text/javascript"></script>
 <!-- END CORE TEMPLATE JS -->
 <!-- BEGIN PAGE LEVEL JS -->
 <script src="{{ asset('assets/plugins/js/scripts.js') }}" type="text/javascript"></script>

@@ -32,11 +32,11 @@
             <span class="icon-thumbnail"><i class="fa fa-users"></i></span>
             <ul class="sub-menu">
                 <li class="">
-                    <a href="#">Add User</a>
+                    <a href="{{ route('user.add_user') }}">Add User</a>
                     <span class="icon-thumbnail"><i class="fa fa-user-plus"></i></span>
                 </li>
                 <li class="">
-                    <a href="#">User List</a>
+                    <a href="{{ route('user.users') }}">User List</a>
                     <span class="icon-thumbnail"><i class="fa fa-address-book"></i></span>
                 </li>
             </ul>
