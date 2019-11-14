@@ -135,13 +135,13 @@ class UserController extends Controller
 
             'old_password'      => 'required',
             'new_password'      => 'min:8|required_with:confirm_password|same:confirm_password',
-            'conform_password'  => 'required|min:8',
+            'confirm_password'  => 'required|min:8',
         ]);
         
         if($validator->fails())
         {
-           // dd($validator);
-            return redirect::to('/users/edit_pass')->withErrors($validator)->withInput()->with('error', 'Please Check Validation Requirments');
+           //dd($validator);
+           // return redirect::to('/users/edit_pass')->withErrors($validator)->with('error', 'Please Check Validation Requirments');
         }
 
         DB::beginTransaction(); 
@@ -150,7 +150,7 @@ class UserController extends Controller
         {
             $user = User::find($id);
 
-            if($user->password != Hash::make($request->get('password')))
+           /*  if($user->password != Hash::make($request->get('password')))
             {
                 return redirect::to('/users/edit_pass')->withErrors($validator)->withInput()->with('error', 'Entered old password wrong');
             }
@@ -160,20 +160,20 @@ class UserController extends Controller
                 return redirect::to('/users/edit_pass')->withErrors($validator)->withInput()->with('error', 'You Entered old password');
             }
             else 
-            {
-                $user->password    = $request->get('new_password');
+            { */
+                $user->password    = Hash::make($request->get('new_password'));
                 $user->save();
 
                 DB::commit();
  
-                return redirect('/users')->with('success', 'Task is Successfully Updated');
-            }
+                return redirect('/users')->with('success', 'Password is Successfully Updated');
+            // }
         }
         catch(\Exception $e)
         {
-           // dd($e->getMessage());
+            //dd($e->getMessage());
             DB::rollback();
-            return redirect('users/edit_user')->withInput()->with('error','Something Went Wrong!');
+            return redirect('users/edit_pass')->withInput()->with('error','Something Went Wrong!');
         }
     }
 }
