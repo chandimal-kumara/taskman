@@ -37,95 +37,96 @@
         </li>
       </ul>
       <!-- Tab panes -->
-    <div class="tab-content"><br>
-      <div class="tab-pane slide-left active" id="slide1">
-        <div class=" container-fluid container-fixed-lg">
-          <!-- START card -->
-          @if(session()->get('error'))
-          <div class="alert alert-danger" role="alert">
-              <button class="close" data-dismiss="alert"></button>
-              <strong>Error: </strong>
-              {{ session()->get('error') }}  
-          </div>
-          @endif
+      <div class="tab-content"><br>
+        <div class="tab-pane slide-left active" id="slide1">
+          <div class=" container-fluid container-fixed-lg">
+            <!-- START card -->
+            @if(session()->get('error'))
+            <div class="alert alert-danger" role="alert">
+                <button class="close" data-dismiss="alert"></button>
+                <strong>Error: </strong>
+                {{ session()->get('error') }}  
+            </div>
+            @endif
 
-          <form method="post" action="{{ route('task.save_task') }}">
-          {{csrf_field()}}
-            <div class="row clearfix">         
-              <div class="col-md-12">
-                <div class="form-group form-group-default required @error('title') has-error @enderror">
-                  <label>Title</label>
-                  <input type="text" value="{{ old('title') }}" class="form-control" name="title" placeholder="Enter Task Title here" required>
-                  @error('title')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+            <form method="post" action="{{ route('task.save_task') }}">
+            {{csrf_field()}}
+              <div class="row clearfix">         
+                <div class="col-md-12">
+                  <div class="form-group form-group-default required @error('title') has-error @enderror">
+                    <label>Title</label>
+                    <input type="text" value="{{ old('title') }}" class="form-control" name="title" placeholder="Enter Task Title here" required>
+                    @error('title')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-5">                              
-                <div class="form-group form-group-default form-group-default-select2 required  @error('type') has-error @enderror">
-                  <label class="">Type</label>
-                  <select name="type" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
-                    <option value="Choose...">---- Choose ----</option><!--selected by default-->
-                      @foreach($types as $type)
-                    <option value="{{ $type->code }}"  @if(old('type') == $type->code) selected @endif> {{ $type->name }} </option>
-                      @endforeach
-                  </select>
-                  @error('type')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
-                </div>              
+              <div class="row">
+                <div class="col-md-5">                              
+                  <div class="form-group form-group-default form-group-default-select2 required  @error('type') has-error @enderror">
+                    <label class="">Type</label>
+                    <select name="type" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
+                      <option value="Choose...">---- Choose ----</option><!--selected by default-->
+                        @foreach($types as $type)
+                      <option value="{{ $type->code }}"  @if(old('type') == $type->code) selected @endif> {{ $type->name }} </option>
+                        @endforeach
+                    </select>
+                    @error('type')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                  </div>              
+                </div>
+                
+                <div class="col-md-5">
+                  <div class="form-group form-group-default form-group-default-select2 required @error('priority') has-error @enderror">
+                    <label>Priority</label>            
+                    <select class="full-width" name="priority" data-placeholder="Select Priority" data-init-plugin="select2">                                        
+                      <option value="LW" @if (old('priority') == 'LW') selected @endif>Low</option>
+                      <option value="MD" @if (old('priority') == 'MD') selected @endif>Medium</option>                                                
+                      <option value="HG" @if (old('priority') == 'HG') selected @endif>High</option>                
+                    </select>
+                    @error('priority')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group form-group-default required @error('hours') has-error @enderror">
+                    <label>Estimated Hours</label>
+                    <input type="number" class="form-control" value="{{ old('hours') }}" name="hours" placeholder="Enter Estimated Hours" required>
+                    @error('hours')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group form-group-default required @error('description') has-error @enderror">
+                    <label>Description</label>
+                    <textarea class="form-control" style="height:60px;" name="description" id="description" placeholder="Briefly Describe about your Task" required>{{ old('description') }}</textarea>
+                    @error('description')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group form-group-default required @error('content') has-error @enderror">
+                    <label>Content</label>
+                    <textarea class="form-control" style="height:100px;" name="content" id="content" placeholder="Include your Content" required>{{ old('content') }}</textarea>
+                    @error('content')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                  </div>
+                </div>
               </div>
               
-              <div class="col-md-5">
-                <div class="form-group form-group-default form-group-default-select2 required @error('priority') has-error @enderror">
-                  <label>Priority</label>            
-                  <select class="full-width" name="priority" data-placeholder="Select Priority" data-init-plugin="select2">                                        
-                    <option value="LW" @if (old('priority') == 'LW') selected @endif>Low</option>
-                    <option value="MD" @if (old('priority') == 'MD') selected @endif>Medium</option>                                                
-                    <option value="HG" @if (old('priority') == 'HG') selected @endif>High</option>                
-                  </select>
-                  @error('priority')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group form-group-default required @error('hours') has-error @enderror">
-                  <label>Estimated Hours</label>
-                  <input type="number" class="form-control" value="{{ old('hours') }}" name="hours" placeholder="Enter Estimated Hours" required>
-                  @error('hours')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group form-group-default required @error('description') has-error @enderror">
-                  <label>Description</label>
-                  <textarea class="form-control" style="height:60px;" name="description" id="description" placeholder="Briefly Describe about your Task" required>{{ old('description') }}</textarea>
-                  @error('description')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group form-group-default required @error('content') has-error @enderror">
-                  <label>Content</label>
-                  <textarea class="form-control" style="height:100px;" name="content" id="content" placeholder="Include your Content" required>{{ old('content') }}</textarea>
-                  @error('content')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
-                </div>
-              </div>
-            </div>
-            
-            <p class="pull-left"></p>
-            <div class="clearfix"></div>
-            <button class="btn btn-primary" type="submit">Create Task</button>
-            <a class="btn btn-complete" href="{{ URL::previous() }}">Go Back</a>
-          </form>
-          <!-- END card -->
-        </div>  
+              <p class="pull-left"></p>
+              <div class="clearfix"></div>
+              <button class="btn btn-primary" type="submit">Create Task</button>
+              <a class="btn btn-complete" href="{{ URL::previous() }}">Go Back</a>
+            </form>
+            <!-- END card -->
+          </div>  
+        </div>
       </div>
-    </div>
+    </div>  
   </div>
   <div class="col-lg-1"></div>
 </div>
-<br><br>
+
 @endsection

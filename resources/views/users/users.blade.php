@@ -22,8 +22,7 @@
   </div>
 </div>
 
-
-<div class="container-fluid  container-fixed-lg box">
+<div class="container-fluid container-fixed-lg box">
   <div class="row">
     <div class="col-lg-1"></div>
       <!-- START card -->
@@ -35,59 +34,58 @@
           </li>
         </ul>
         
-        <div class="card-block">
+      <div class="card-block" style="background-color:white;">
         <div class="pull-right">
-                  <div class="col-xs-12">
-                    <a href="{{ route('user.add_user') }}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i>&nbsp;Add User</a>
-                  </div>
-                </div>
-          <div class="table-responsive">
-            <div id="detailedTable_wrapper" class="dataTables_wrapper no-footer">
-            <br>
-            @if(session()->get('success'))
-                <div class="alert alert-success" role="alert">
-                  <button class="close" data-dismiss="alert"></button>
-                  <strong>Success: </strong>
-                    {{ session()->get('success') }}  
-                </div>
-              @endif 
-                                          <!-- table-detailed  demo-table-dynamic table-responsive-block-->
-              <table class="table table-hover table-responsive-block table-condensed dataTable no-footer" id="detailedTables" role="grid">
-                <thead>
+          <div class="col-xs-12">
+            <a href="{{ route('user.add_user') }}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i>&nbsp;Add User</a>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <div id="detailedTable_wrapper" class="dataTables_wrapper no-footer">
+          <br>
+          @if(session()->get('success'))
+              <div class="alert alert-success" role="alert">
+                <button class="close" data-dismiss="alert"></button>
+                <strong>Success: </strong>
+                  {{ session()->get('success') }}  
+              </div>
+            @endif 
+                                        <!-- table-detailed  demo-table-dynamic table-responsive-block-->
+            <table class="table table-hover table-responsive-block table-condensed dataTable no-footer" id="detailedTables" role="grid">
+              <thead>
+                <tr role="row">
+                  <th style="width:25%" class="sorting_disabled" rowspan="1" colspan="1">Name</th>
+                  <th style="width:25%" class="sorting_disabled" rowspan="1" colspan="1">Email</th>
+                  <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">Type</th>
+                  <th style="width:10%" class="sorting_disabled" rowspan="1" colspan="1">Status</th>
+                  <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">Last Login</th>
+                </tr>
+              </thead>
+              <tbody>  
+                @foreach($users as $user)          
                   <tr role="row">
-                    <th style="width:25%" class="sorting_disabled" rowspan="1" colspan="1">Name</th>
-                    <th style="width:25%" class="sorting_disabled" rowspan="1" colspan="1">Email</th>
-                    <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">Type</th>
-                    <th style="width:10%" class="sorting_disabled" rowspan="1" colspan="1">Status</th>
-                    <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">Last Login</th>
+                    <td class="v-align-middle link"><a href="/users/edit_user/{{$user->id}}">{{$user->name}}</a></td>
+                    <td class="v-align-middle">{{$user->email}}</td>
+                    <td class="v-align-middle">{{$user->type}}</td>
+                    <td class="v-align-middle">{{$user->status}}</td>
+                  @if($user->last_login == null)
+                    <td class="v-align-middle">0000-00-00 00:00:00</td>
+                  @else
+                    <td class="v-align-middle">{{ $user->last_login }}</td>
+                  @endif      
                   </tr>
-                </thead>
-                <tbody>  
-                  @foreach($users as $user)          
-                    <tr role="row">
-                      <td class="v-align-middle link"><a href="/users/edit_user/{{$user->id}}">{{$user->name}}</a></td>
-                      <td class="v-align-middle">{{$user->email}}</td>
-                      <td class="v-align-middle">{{$user->type}}</td>
-                      <td class="v-align-middle">{{$user->status}}</td>
-                    @if($user->last_login == null)
-                      <td class="v-align-middle">0000-00-00 00:00:00</td>
-                    @else
-                      <td class="v-align-middle">{{ $user->last_login }}</td>
-                    @endif      
-                    </tr>
-                  @endforeach 
-                </tbody>
-              </table>  
-            </div>
+                @endforeach 
+              </tbody>
+            </table>  
           </div>
         </div>
       </div>
+    </div>
       <!-- END card -->
-      <div class="col-lg-1"></div>
+    <div class="col-lg-1"></div>
   </div>
 </div>
-
-<br><br><br><br><br><br><br><br><br><br>
 
 @endsection
     

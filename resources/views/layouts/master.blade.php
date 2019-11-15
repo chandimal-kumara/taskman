@@ -5,7 +5,7 @@
     @include('layouts.head')
     <!-- END HEAD-->
   </head>
-  <body class="fixed-header">
+  <body class="fixed-header sidebar-visible menu-pin">
 
     <!-- BEGIN SIDEBPANEL-->
     @include('layouts.nav')
