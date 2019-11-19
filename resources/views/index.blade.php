@@ -211,6 +211,18 @@
       echo 'Currency Symbol: ' . $ipdat->geoplugin_currencySymbol . "\n"; 
       echo 'Currency Code: ' . $ipdat->geoplugin_currencyCode . "\n"; 
       echo 'Timezone: ' . $ipdat->geoplugin_timezone;  */
+
+
+$ip = $_SERVER['REMOTE_ADDR']; 
+$api_key = "YOUR_API_KEY";
+$freegeoipjson = file_get_contents("http://api.ipstack.com/".$ip."?access_key=".$api_key."");
+$jsondata = json_decode($freegeoipjson);
+$countryfromip = $jsondata->country_name;
+$cityfromip = $jsondata->city;
+echo "City: ". $cityfromip ."";
+echo "<br/>";
+echo "Country: ". $countryfromip ."";
+
 ?> 
   <!-- START WIDGET widget_weatherWidget-->         
       <div class="widget-17 card  no-border no-margin widget-loader-circle">
