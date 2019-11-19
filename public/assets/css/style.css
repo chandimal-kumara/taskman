@@ -1,9 +1,25 @@
-.task_th_1 {
+.task_th_5 {
+    width: 5% !important;
+}
+
+.task_th_10 {
     width: 10% !important;
 }
 
-.task_th_2 {
+.task_th_15 {
+    width: 15% !important;
+}
+
+.task_th_20 {
     width: 20% !important;
+}
+
+.task_th_25 {
+    width: 25% !important;
+}
+
+.task_th_30 {
+    width: 30% !important;
 }
 
 .bg {

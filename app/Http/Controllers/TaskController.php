@@ -20,15 +20,23 @@ class TaskController extends Controller
 
     public function index()
     {
-        return view('index');
+        
+        $data['tasks']      = Task::get()->count();
+        $data['created']    = DB::table('tasks')->where('task_status', 'created')->get()->count();
+        $data['pending']    = DB::table('tasks')->where('task_status', 'pending')->get()->count();
+        $data['active']     = DB::table('tasks')->where('task_status', 'active')->get()->count();
+        $data['completed']  = DB::table('tasks')->where('task_status', 'completed')->get()->count();
+        return view('index', $data);
     }
 
     public function tasks()
     {
-        $data['types'] = TaskTypes::get();
-        $data['task1'] = DB::table('tasks')->where('task_status', 'created')->get();
-        $data['task2'] = DB::table('tasks')->where('task_status', 'assigned')->get();
-        $data['task3'] = DB::table('tasks')->where('task_status', 'completed')->get();
+        $data['types']      = TaskTypes::get();
+        $data['users']      = User::get();
+        $data['created']    = DB::table('tasks')->where('task_status', 'created')->get();
+        $data['pending']    = DB::table('tasks')->where('task_status', 'pending')->get();
+        $data['active']     = DB::table('tasks')->where('task_status', 'active')->get();
+        $data['completed']  = DB::table('tasks')->where('task_status', 'completed')->get();
         return view('tasks/tasks', $data);
     }
 
@@ -146,7 +154,6 @@ class TaskController extends Controller
             $task->save();
 
             DB::commit();
-            //dd($task->task_status);
  
             return redirect('/tasks')->with('success', 'Task is Successfully Updated');
         }
@@ -156,7 +163,42 @@ class TaskController extends Controller
             DB::rollback();
             return redirect('tasks/update')->withInput()->with('error','Something Went Wrong!');
         }  
-    } 
+    }
+   
+    public function assign_task( Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+
+            'users'              => 'required|not_in:Choose...',
+        ]);
+        
+        if($validator->fails())
+        {
+           // dd($validator);
+            return redirect::to('/tasks')->withErrors($validator)->withInput()->with('error', 'Please Check Validation Requirments');
+        }
+
+        DB::beginTransaction(); 
+        
+        try
+        {
+            $task              = Task::find($id);
+            $task->assign      = $request->get('users');
+            $task->task_status = 'pending';
+
+            $task->save();
+
+            DB::commit();
+ 
+            return redirect('/tasks')->with('success', 'Task is Successfully Assigned');
+        }
+        catch(\Exception $e)
+        {
+           // dd($e->getMessage());
+            DB::rollback();
+            return redirect('/tasks')->withInput()->with('error','Something Went Wrong!');
+        }  
+    }
 
     public function destroy_task($id)
     {

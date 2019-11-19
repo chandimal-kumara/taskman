@@ -32,10 +32,13 @@
       <a href="#" class="@if (empty($tabName) || $tabName == 'created') active @endif" data-toggle="tab" data-target="#slide1"><span>Created Tasks</span></a>
     </li>
     <li class="nav-item">
-      <a href="#" class="@if (!empty($tabName) && $tabName == 'assigned') active @endif" data-toggle="tab" data-target="#slide2"><span>Working Tasks</span></a>
+      <a href="#" class="@if (!empty($tabName) && $tabName == 'pending') active @endif" data-toggle="tab" data-target="#slide2"><span>Pending Tasks</span></a>
     </li>
     <li class="nav-item">
-      <a href="#" class="@if (!empty($tabName) && $tabName == 'completed') active @endif" data-toggle="tab" data-target="#slide3"><span>Completed Tasks</span></a>
+      <a href="#" class="@if (!empty($tabName) && $tabName == 'assigned') active @endif" data-toggle="tab" data-target="#slide3"><span>Working in Progress Tasks</span></a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="@if (!empty($tabName) && $tabName == 'completed') active @endif" data-toggle="tab" data-target="#slide4"><span>Completed Tasks</span></a>
     </li>
   </ul>
   <!-- Tab panes -->
@@ -68,19 +71,20 @@
                 <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
                   <thead>
                     <tr>
-                      <th class="task_th_1">Task ID</th>
-                      <th class="task_th_2">Title</th>
-                      <th class="task_th_2">type</th>
-                      <th class="task_th_2">priority</th>
-                      <th class="task_th_1">Estimate Hours</th>
-                      <th class="task_th_2">Actions</th>
+                      <th class="task_th_10">Task ID</th>
+                      <th class="task_th_20">Title</th>
+                      <th class="task_th_20">type</th>
+                      <th class="task_th_10">priority</th>
+                      <th class="task_th_10">Estimate Hours</th>
+                      <th class="task_th_30">Assign</th>
+                      <th class="task_th_5">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                  @foreach($task1 as $task)
+                  @foreach($created as $task)
                     <tr>
                       <td class="v-align-middle">
-                        <p>{{$task->task_code}}</p>
+                        <p class="link"><a href="/tasks/view_task/{{$task->id}}">{{$task->task_code}}</a></p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{str_limit($task->title, 25)}}</p>
@@ -97,7 +101,24 @@
                         <p>{{$task->estimated_hours}}</p>
                       </td> 
                       <td class="v-align-middle">
-                          <a href="/assign/{{$task->id}}" class="btn btn-success"><i class="fa fa-paper-plane"></i></a>&nbsp;<a href="/tasks/view_task/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        <form action="{{ route('task.assign_task', $task->id) }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }}
+                          <div class="form-group @error('users') has-error @enderror">    
+                            <select style="width:120px;" name="users" data-placeholder="Select Priority" data-init-plugin="select2">   
+                              <option value="Choose...">-- Choose --</option><!--selected by default-->
+                            @foreach($users as $user) 
+                              <option value="{{ $user->id }}"> {{ $user->name }} </option>                                            
+                            @endforeach
+                            </select>
+                            <!-- <a href="" class="btn btn-success"><i class="fa fa-paper-plane"></i></a> -->
+                            <button class="btn btn-success" type="submit" name="submit"><i class="fa fa-paper-plane"></i></button>  
+                          </div>
+                        </form>                       
+                        
+                      </td> 
+                      <td class="v-align-middle">            
+                        <p><a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a></p>
                       </td>     
                     </tr>
                     @endforeach 
@@ -110,8 +131,71 @@
     </div>
 
 
-
     <div class="tab-pane slide-left" id="slide2">
+    <div class=" container-fluid container-fixed-lg">
+            <!-- START card -->
+            <div class="card card-transparent">
+              <div class="card-header ">
+                <div class="card-title">Pending for Accept
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="card-block">
+
+             <!--  @if(session()->get('success'))
+                <div class="alert alert-success" role="alert">
+                  <button class="close" data-dismiss="alert"></button>
+                  <strong>Success: </strong>
+                    {{ session()->get('success') }}  
+                </div>
+              @endif -->
+
+                <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
+                  <thead>
+                    <tr>
+                      <th class="task_th_10">Task ID</th>
+                      <th class="task_th_20">Title</th>
+                      <th class="task_th_20">type</th>
+                      <th class="task_th_20">priority</th>
+                      <th class="task_th_20">Estimate Hours</th>
+                      <th class="task_th_10">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($pending as $task)
+                    <tr>
+                      <td class="v-align-middle">
+                      <p class="link"><a href="/tasks/view_task/{{$task->id}}"></i>{{$task->task_code}}</a></p>
+                      </td>
+                      <td class="v-align-middle">
+                        <p>{{str_limit($task->title, 25)}}</p>
+                      </td>
+                      <td class="v-align-middle">
+                        @foreach($types as $type)
+                        <p>@if ($task->type == $type->code) {{$type->name}} @endif</p> 
+                        @endforeach
+                      </td>
+                      <td class="v-align-middle">
+                        <p>@if ($task->priority == 'LW') low @endif @if ($task->priority == 'MD') Medium @endif @if ($task->priority == 'HG') High @endif</p>
+                      </td>
+                      <td class="v-align-middle">
+                        <p>{{$task->estimated_hours}}</p>
+                      </td> 
+                      <td class="v-align-middle">
+                        <a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                      </td>     
+                    </tr>
+                    @endforeach 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- END card -->
+      </div>
+    </div>
+
+
+    <div class="tab-pane slide-left" id="slide3">
     <div class=" container-fluid container-fixed-lg">
             <!-- START card -->
             <div class="card card-transparent">
@@ -133,19 +217,19 @@
                 <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
                   <thead>
                     <tr>
-                      <th class="task_th_1">Task ID</th>
-                      <th class="task_th_2">Title</th>
-                      <th class="task_th_2">type</th>
-                      <th class="task_th_2">priority</th>
-                      <th class="task_th_1">Estimate Hours</th>
-                      <th class="task_th_2">Actions</th>
+                      <th class="task_th_10">Task ID</th>
+                      <th class="task_th_20">Title</th>
+                      <th class="task_th_20">type</th>
+                      <th class="task_th_20">priority</th>
+                      <th class="task_th_20">Estimate Hours</th>
+                      <th class="task_th_10">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                  @foreach($task2 as $task)
+                  @foreach($active as $task)
                     <tr>
                       <td class="v-align-middle">
-                        <p>{{$task->task_code}}</p>
+                      <p class="link"><a href="/tasks/view_task/{{$task->id}}"></i>{{$task->task_code}}</a></p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{str_limit($task->title, 25)}}</p>
@@ -162,7 +246,7 @@
                         <p>{{$task->estimated_hours}}</p>
                       </td> 
                       <td class="v-align-middle">
-                          <a href="/tasks/view_task/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        <a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                       </td>     
                     </tr>
                     @endforeach 
@@ -176,7 +260,7 @@
 
 
     
-    <div class="tab-pane slide-left" id="slide3">
+    <div class="tab-pane slide-left" id="slide4">
     <div class=" container-fluid container-fixed-lg">
             <!-- START card -->
             <div class="card card-transparent">
@@ -198,19 +282,19 @@
                 <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
                   <thead>
                     <tr>
-                      <th class="task_th_1">Task ID</th>
-                      <th class="task_th_2">Title</th>
-                      <th class="task_th_2">type</th>
-                      <th class="task_th_2">priority</th>
-                      <th class="task_th_1">Estimate Hours</th>
-                      <th class="task_th_2">Actions</th>
+                      <th class="task_th_10">Task ID</th>
+                      <th class="task_th_20">Title</th>
+                      <th class="task_th_20">type</th>
+                      <th class="task_th_20">priority</th>
+                      <th class="task_th_20">Estimate Hours</th>
+                      <th class="task_th_10">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                  @foreach($task3 as $task)
+                  @foreach($completed as $task)
                     <tr>
                       <td class="v-align-middle">
-                        <p>{{$task->task_code}}</p>
+                        <p class="link"><a href="/tasks/view_task/{{$task->id}}">{{$task->task_code}}</a></p>
                       </td>
                       <td class="v-align-middle">
                         <p>{{str_limit($task->title, 25)}}</p>
@@ -227,7 +311,7 @@
                         <p>{{$task->estimated_hours}}</p>
                       </td> 
                       <td class="v-align-middle">
-                        <a href="/tasks/view_task/{{$task->id}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>&nbsp;<a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        <a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                       </td>     
                     </tr>
                     @endforeach 
@@ -240,7 +324,7 @@
     </div>
   </div>
 
-  <!-- /.start modal -->
+  <!-- /.start modal delete modal-->
   <div class="modal fade stick-up" id="delete-task" tabindex="-1" role="dialog" aria-labelledby="addNewAppModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -280,6 +364,6 @@
   }
 
 </script>
-  
+
 
 @endsection

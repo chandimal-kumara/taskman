@@ -26,6 +26,7 @@
 <script src="{{ asset('assets/js/tables.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/scripts.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/form_layouts.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/dashboard.js') }}" type="text/javascript"></script>
 <!-- END CORE TEMPLATE JS -->
 <!-- BEGIN PAGE LEVEL JS -->
 <script src="{{ asset('assets/plugins/js/scripts.js') }}" type="text/javascript"></script>
@@ -48,3 +49,23 @@
 <script src="{{ asset('assets/plugins/bootstrap-typehead/typeahead.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-typehead/typeahead.jquery.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/handlebars/handlebars-v4.0.5.js') }}"></script>
+<script src="{{ asset('assets/plugins/nvd3/lib/d3.v3.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/nvd3/nv.d3.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/nvd3/src/utils.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/nvd3/src/tooltip.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/nvd3/src/interactiveLayer.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/nvd3/src/models/axis.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/nvd3/src/models/line.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/nvd3/src/models/lineWithFocusChart.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/mapplic/js/hammer.js') }}"></script>
+<script src="{{ asset('assets/plugins/mapplic/js/jquery.mousewheel.js') }}"></script>
+<script src="{{ asset('assets/plugins/mapplic/js/mapplic.js') }}"></script>
+<script src="{{ asset('assets/plugins/rickshaw/rickshaw.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-metrojs/MetroJs.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/skycons/skycons.js') }}" type="text/javascript"></script>
+
+  
+
+    
+    
