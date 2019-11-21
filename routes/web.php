@@ -11,6 +11,9 @@ Route::get('/tasks/view_task/{id}', 'TaskController@view_task')->name('task.view
 Route::get('/tasks/edit_task/{id}', 'TaskController@edit_task')->name('task.edit_task');
 Route::put('/tasks/update_task/{id}', 'TaskController@update_task')->name('task.update_task');
 Route::put('/tasks/assign_task/{id}', 'TaskController@assign_task')->name('task.assign_task');
+Route::put('/tasks/action_task/{id}', 'TaskController@action_task')->name('task.action_task');
+Route::put('/tasks/action2_task/{id}', 'TaskController@action2_task')->name('task.action2_task');
+Route::put('/tasks/unhold_task/{id}', 'TaskController@unhold_task')->name('task.unhold_task');
 Route::post('/tasks/save_task', 'TaskController@save_task')->name('task.save_task');
 Route::delete('/tasks/delete_task/{id}', 'TaskController@destroy_task')->name('task.destroy_task');
 

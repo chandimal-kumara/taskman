@@ -55,9 +55,10 @@
             <table class="table table-hover table-responsive-block table-condensed dataTable no-footer" id="detailedTables" role="grid">
               <thead>
                 <tr role="row">
-                  <th style="width:25%" class="sorting_disabled" rowspan="1" colspan="1">Name</th>
-                  <th style="width:25%" class="sorting_disabled" rowspan="1" colspan="1">Email</th>
-                  <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">Type</th>
+                  <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">User ID</th>
+                  <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">Name</th>
+                  <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">Email</th>
+                  <th style="width:10%" class="sorting_disabled" rowspan="1" colspan="1">Type</th>
                   <th style="width:10%" class="sorting_disabled" rowspan="1" colspan="1">Status</th>
                   <th style="width:20%" class="sorting_disabled" rowspan="1" colspan="1">Last Login</th>
                 </tr>
@@ -65,7 +66,8 @@
               <tbody>  
                 @foreach($users as $user)          
                   <tr role="row">
-                    <td class="v-align-middle link"><a href="/users/edit_user/{{$user->id}}">{{$user->name}}</a></td>
+                    <td class="v-align-middle link"><a href="/users/edit_user/{{$user->id}}">{{$user->user_id}}</a></td>
+                    <td class="v-align-middle">{{$user->name}}</td>
                     <td class="v-align-middle">{{$user->email}}</td>
                     <td class="v-align-middle">{{$user->type}}</td>
                     <td class="v-align-middle">{{$user->status}}</td>

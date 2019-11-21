@@ -61,9 +61,9 @@
                 </div>
               </div>
               <div class="p-l-20">
-                <h3 class="no-margin p-b-5 text-white">CREATED TASKS</h3>
+                <h3 class="no-margin p-b-5 text-white">CREATED TASKS ({{$created}})</h3>
                   <p class="small hint-text m-t-5">
-                    <span class="label  font-montserrat m-r-5">{{ $created / $tasks * 100 }}%</span>
+                    <span class="label  font-montserrat m-r-5">{{ floor($created / $tasks * 100) }}%</span>
                   </p>
               </div>
               <div class="mt-auto">
@@ -82,7 +82,7 @@
             <div class="full-height d-flex flex-column">
               <div class="card-header ">
                 <div class="card-title text-black">
-                  <span class="font-montserrat fs-11 all-caps">PENDING FOR ACCEPT <i class="fa fa-chevron-right"></i></span>
+                  <span class="font-montserrat fs-11 all-caps">PENDING FOR ACTION<i class="fa fa-chevron-right"></i></span>
                 </div>
                 <div class="card-controls">
                   <ul>
@@ -92,9 +92,9 @@
                 </div>
               </div>
               <div class="p-l-20">
-                <h3 class="no-margin p-b-5 text-white">PENDING TASKS</h3>
+                <h3 class="no-margin p-b-5 text-white">PENDING TASKS ({{$pending}})</h3>
                   <p class="small hint-text m-t-5">
-                    <span class="label  font-montserrat m-r-5">{{ $pending / $tasks * 100 }}%</span>
+                    <span class="label  font-montserrat m-r-5">{{ floor($pending / $tasks * 100) }}%</span>
                   </p>
               </div>
               <div class="mt-auto">
@@ -127,9 +127,9 @@
                 </div>
               </div>
               <div class="p-l-20">
-                <h3 class="no-margin p-b-5 text-white">WORKING IN PROGRESS</h3>
+                <h3 class="no-margin p-b-5 text-white">WORKING TASKS ({{$active}})</h3>
                   <p class="small hint-text m-t-5">
-                    <span class="label  font-montserrat m-r-5">{{ $active / $tasks * 100 }}%</span>
+                    <span class="label  font-montserrat m-r-5">{{ floor($active / $tasks * 100) }}%</span>
                   </p>
               </div>
               <div class="mt-auto">
@@ -158,9 +158,9 @@
                 </div>
               </div>
               <div class="p-l-20">
-                <h3 class="no-margin p-b-5 text-white">COMPLETED TASKS</h3>
+                <h3 class="no-margin p-b-5 text-white">COMPLETED TASKS ({{$completed}})</h3>
                   <p class="small hint-text m-t-5">
-                    <span class="label  font-montserrat m-r-5">{{ $completed / $tasks * 100 }}%</span>
+                    <span class="label  font-montserrat m-r-5">{{ floor($completed / $tasks * 100) }}%</span>
                   </p>
               </div>
               <div class="mt-auto">
@@ -175,75 +175,84 @@
         </div>
 
       </div>
+
+      <div class="row" style="margin:0;">
+
+        <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-xlg-6 card-block " style="padding:2px;">
+        <div class="widget-8 card no-border bg-master no-margin widget-loader-bar">
+            <div class="full-height d-flex flex-column">
+              <div class="card-header ">
+                <div class="card-title text-black">
+                  <span class="font-montserrat fs-11 all-caps">USER ONHOLD TASKS <i class="fa fa-chevron-right"></i></span>
+                </div>
+                <div class="card-controls">
+                  <ul>
+                    <li><a href="#" class="card-refresh text-black" data-toggle="refresh"><i class="card-icon card-icon-refresh"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="p-l-20">
+                <h3 class="no-margin p-b-5 text-white">ONHOLD TASKS ({{$onhold}})</h3>
+                  <p class="small hint-text m-t-5">
+                    <span class="label  font-montserrat m-r-5">{{ floor($onhold / $tasks * 100) }}%</span>
+                  </p>
+              </div>
+              <div class="mt-auto">
+                <div class="progress progress-small m-b-20">
+                  <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
+                  <div class="progress-bar progress-bar-white" style="width:{{ $active / $tasks * 100 }}%"></div>
+                  <!-- END BOOTSTRAP PROGRESS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-6 col-md-6 col-xlg-6 col-sm-12 card-block " style="padding:2px;">
+        <div class="widget-8 card no-border bg-info no-margin widget-loader-bar">
+            <div class="full-height d-flex flex-column">
+              <div class="card-header ">
+                <div class="card-title text-black">
+                  <span class="font-montserrat fs-11 all-caps">ALL REJECTED TASKS <i class="fa fa-chevron-right"></i></span>
+                </div>
+                <div class="card-controls">
+                  <ul>
+                    <li><a href="#" class="card-refresh text-black" data-toggle="refresh"><i class="card-icon card-icon-refresh"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="p-l-20">
+                <h3 class="no-margin p-b-5 text-white">REJECTED TASKS ({{$rejected}})</h3>
+                  <p class="small hint-text m-t-5">
+                    <span class="label  font-montserrat m-r-5">{{ floor($rejected / $tasks * 100) }}%</span>
+                  </p>
+              </div>
+              <div class="mt-auto">
+                <div class="progress progress-small m-b-20">
+                  <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
+                  <div class="progress-bar progress-bar-white" style="width:{{ $active / $tasks * 100 }}%"></div>
+                  <!-- END BOOTSTRAP PROGRESS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-    <?php  
-  
-      function getVisIpAddr() { 
-            
-          if (!empty($_SERVER['HTTP_CLIENT_IP'])) { 
-              return $_SERVER['HTTP_CLIENT_IP']; 
-          } 
-          else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) { 
-              return $_SERVER['HTTP_X_FORWARDED_FOR']; 
-          } 
-          else { 
-              return $_SERVER['REMOTE_ADDR']; 
-          } 
-      } 
-      // Store the IP address 
-      $vis_ip = getVisIPAddr(); 
-      // Display the IP address 
-      // PHP code to obtain country, city,  
-      // continent, etc using IP Address 
-      $ip = $vis_ip; 
-      // Use JSON encoded string and converts 
-      // it into a PHP variable 
-      $ipdat = @json_decode(file_get_contents( 
-      "http://www.geoplugin.net/json.gp?ip=" . $ip)); 
-   
-     /*  echo 'Country Name: ' . $ipdat->geoplugin_countryName . "\n"; 
-      echo 'City Name: ' . $ipdat->geoplugin_city . "\n"; 
-      echo 'Continent Name: ' . $ipdat->geoplugin_continentName . "\n"; 
-      echo 'Latitude: ' . $ipdat->geoplugin_latitude . "\n"; 
-      echo 'Longitude: ' . $ipdat->geoplugin_longitude . "\n"; 
-      echo 'Currency Symbol: ' . $ipdat->geoplugin_currencySymbol . "\n"; 
-      echo 'Currency Code: ' . $ipdat->geoplugin_currencyCode . "\n"; 
-      echo 'Timezone: ' . $ipdat->geoplugin_timezone;  */
 
-    ?>
-     
   <!-- START WIDGET widget_weatherWidget-->         
       <div class="widget-17 card  no-border no-margin widget-loader-circle">
         <div class="card-header ">
           <div class="card-title">
-            <i class="pg-map"></i> {{$ipdat->geoplugin_countryName}}, {{$ipdat->geoplugin_timezone}}
+            <i class="pg-map"></i>           
+              Srilanka , Colombo
             <span class="caret"></span>
-          </div>
-          <div class="card-controls">
-            <ul>
-              <li class="">
-                <div class="dropdown">
-                  <a data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                    <i class="card-icon card-icon-settings"></i>
-                  </a>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#">AAPL</a>
-                    </li>
-                    <li><a href="#">YHOO</a>
-                    </li>
-                    <li><a href="#">GOOG</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li>
-                <a data-toggle="refresh" class="card-refresh text-black" href="#">
-                  <i class="card-icon card-icon-refresh"></i>
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
         <div class="card-block">
@@ -258,18 +267,14 @@
                   <div class="col-lg-7">
                     <div class="pull-left">
                       <p class="small hint-text no-margin">Currently</p>
-                      <h4 class="text-danger bold no-margin">32°
-            <span class="small">/ 30C</span>
-          </h4>
+                      <h4 class="text-danger bold no-margin">32°<span class="small">/ 30C</span></h4>
                     </div>
                     <div class="pull-right">
                       <canvas height="64" width="64" class="clear-day"></canvas>
                     </div>
                   </div>
                 </div>
-                <h5>Feels like
-      <span class="semi-bold">rainy</span>
-    </h5>
+                <h5>Feels like<span class="semi-bold">rainy</span></h5>
                 <p>Weather information</p>
                 <div class="widget-17-weather">
                   <div class="row">

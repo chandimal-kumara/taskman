@@ -40,5 +40,7 @@
 
     @include('layouts.bottom')
 
+    @yield('script')
+
   </body>
 </html>

@@ -29,10 +29,8 @@
 <script src="{{ asset('assets/js/dashboard.js') }}" type="text/javascript"></script>
 <!-- END CORE TEMPLATE JS -->
 <!-- BEGIN PAGE LEVEL JS -->
-<script src="{{ asset('assets/plugins/js/scripts.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/plugins/js/datatables.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/plugins/js/form_elements.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/plugins/js/form_layouts.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/datatables.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/form_elements.js') }}" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS -->
 <script src="{{ asset('assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/jquery-autonumeric/autoNumeric.js') }}" type="text/javascript"></script>

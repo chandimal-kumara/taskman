@@ -53,14 +53,41 @@
         {{csrf_field()}}
         @method('PUT')
         <div class="row clearfix">
-          <div class="col-md-8">
+          <div class="col-md-10">
             <div class="form-group form-group-default required @error('name') has-error @enderror" aria-required="true">
               <label>Name</label>
               <input type="text" value="{{ $users->name }}" class="form-control" name="name"  placeholder="Enter name here">
               @error('name')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-2">
+              <div class="form-group form-group-default required @error('title') has-error @enderror">
+                <label>User ID</label>
+                <input style="color:gray;" type="text" value="{{ $users->user_id }}" class="form-control" name="user_id" readonly>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group form-group-default required @error('email') has-error @enderror">
+              <div class="form-input-group">
+                  <label>Email</label>
+                  <input type="email" value="{{ $users->email }}" class="form-control" name="email" placeholder="Enter your Email address here">
+                  @error('email')<small class="text-danger">{{ $message }}</small>@enderror
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group form-group-default required form-group-default-select2 @error('status') has-error @enderror">
+              <label>Status</label>
+              <select class="full-width" name="status" data-placeholder="Select Status" data-init-plugin="select2">                                      
+                  <option value="active" @if ($users->status == 'active') selected @endif>Active</option>
+                  <option value="deactive" @if ($users->status == 'deactive') selected @endif>Deactive</option>                                                              
+              </select>
+              @error('status')<small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+          </div>
+          <div class="col-md-3">
             <div class="form-group form-group-default required form-group-default-select2 @error('type') has-error @enderror">
               <label>Type</label>
               <select class="full-width" name="type" data-placeholder="Select Type" data-init-plugin="select2">    
@@ -70,27 +97,6 @@
                   <option value="user" @if ($users->type == 'user') selected @endif>User</option>                
               </select>
               @error('type')<small class="text-danger">{{ $message }}</small>@enderror
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8">
-            <div class="form-group form-group-default required @error('email') has-error @enderror">
-              <div class="form-input-group">
-                  <label>Email</label>
-                  <input type="email" value="{{ $users->email }}" class="form-control" name="email" placeholder="Enter your Email address here">
-                  @error('email')<small class="text-danger">{{ $message }}</small>@enderror
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group form-group-default required form-group-default-select2 @error('status') has-error @enderror">
-              <label>Status</label>
-              <select class="full-width" name="status" data-placeholder="Select Status" data-init-plugin="select2">                                      
-                  <option value="active" @if ($users->status == 'active') selected @endif>Active</option>
-                  <option value="deactive" @if ($users->status == 'deactive') selected @endif>Deactive</option>                                                              
-              </select>
-              @error('status')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
           </div>
         </div>

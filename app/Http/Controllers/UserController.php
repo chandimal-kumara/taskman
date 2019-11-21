@@ -69,6 +69,14 @@ class UserController extends Controller
             $user->password      = Hash::make($request->get('password'));
             $user->save();
 
+            $str = $request->type;
+            $fChar = $str[0];
+
+            $code = $request->name."_".$fChar.$user->id;
+            $user->user_id    = $code;
+
+            $user->save(); 
+
             DB::commit();
  
             return redirect('/users')->with('success', 'User is Successfully Saved');
