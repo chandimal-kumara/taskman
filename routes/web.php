@@ -14,6 +14,7 @@ Route::put('/tasks/assign_task/{id}', 'TaskController@assign_task')->name('task.
 Route::put('/tasks/action_task/{id}', 'TaskController@action_task')->name('task.action_task');
 Route::put('/tasks/action2_task/{id}', 'TaskController@action2_task')->name('task.action2_task');
 Route::put('/tasks/unhold_task/{id}', 'TaskController@unhold_task')->name('task.unhold_task');
+Route::put('/tasks/reassign_task/{id}', 'TaskController@reassign_task')->name('task.reassign_task');
 Route::post('/tasks/save_task', 'TaskController@save_task')->name('task.save_task');
 Route::delete('/tasks/delete_task/{id}', 'TaskController@destroy_task')->name('task.destroy_task');
 
@@ -26,3 +27,6 @@ Route::put('/users/update_user/{id}', 'UserController@update_user')->name('user.
 Route::get('/users/edit_pass/{id}', 'UserController@edit_pass')->name('user.edit_pass');
 Route::put('/users/update_pass/{id}', 'UserController@update_pass')->name('user.update_pass');
 Route::delete('/users/delete_user/{id}', 'UserController@destroy_user')->name('user.destroy_user');
+
+// Comment Routes
+Route::post('/save_comment', 'TaskCommentController@save_comment')->name('taskComment.save_comment');

@@ -27,7 +27,7 @@
     
   <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-  <div class="card card-transparent" >
+  <div class="card card-transparent" id="alert">
     <div class="card-block" style="padding:0;">
       <div class="alert alert-info" role="alert">
         <p class="pull-left">Meeting rescheduled</p>
@@ -429,4 +429,17 @@
 <!-- END CONTAINER FLUID -->
 @endsection
 
+@section('script')
+
+<script type="text/javascript">
+
+window.setTimeout(function() {
+    $("#alert").fadeTo(1000, 0).slideUp(1000, function(){
+        $(this).remove(); 
+    });
+}, 5000);
+
+</script>
+
+@endsection
 

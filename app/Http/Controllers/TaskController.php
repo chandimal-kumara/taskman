@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Task;
 use App\User;
 use App\TaskTypes;
+use App\TaskComment;
 use App\Http\Controllers\Auth;
 use DB;
 use Validator;
@@ -45,8 +46,19 @@ class TaskController extends Controller
 
     public function view_task($id)
     {
-        $data['tasks'] = Task::find($id);
-        $data['types'] = TaskTypes::get();
+       // $data['comment']    = TaskComment::join('tasks', 'task_comments.task_id', '=', 'tasks.id')->get();
+
+        $data['comments']   = DB::table('task_comments')
+                            ->join('tasks', 'tasks.id', '=', 'task_comments.task_id')
+                            ->join('users', 'users.id', '=', 'task_comments.user_id')
+                            ->select('task_comments.comments', 'users.name', 'users.type', 'tasks.created', 'task_comments.created_at')
+                            ->where('task_comments.task_id', '=', $id)
+                            ->orderBy('task_comments.created_at','desc')
+                            ->get();
+        $data['tasks']      = Task::find($id);
+        $data['types']      = TaskTypes::get();
+        $data['users']      = User::get();
+        //dd($comment);
         return view('tasks/view_task', $data);   
     }
  
@@ -70,7 +82,6 @@ class TaskController extends Controller
             'type'              => 'required|not_in:Choose...',
             'priority'          => 'required',
             'description'       => 'required|min:50', 
-            'content'           => 'required|min:100',
             'hours'             => 'required|numeric',
         ]);
         
@@ -89,7 +100,6 @@ class TaskController extends Controller
             $task->type             = $request->get('type');
             $task->priority         = $request->get('priority');
             $task->description      = $request->get('description');
-            $task->content          = $request->get('content');
             $task->estimated_hours  = $request->get('hours');
             $task->created          = \Auth::user()->id;
 
@@ -114,7 +124,7 @@ class TaskController extends Controller
               
             DB::commit();
  
-            return redirect('/tasks')->with('success', 'Task is Successfully Saved');
+            return redirect('/tasks')->with('success_created', 'Task is Successfully Saved');
         }
         catch(\Exception $e)
         {
@@ -131,7 +141,6 @@ class TaskController extends Controller
             'type'              => 'required|not_in:Choose...',
             'priority'          => 'required',
             'description'       => 'required|min:50', 
-            'content'           => 'required|min:100',
             'hours'             => 'required|numeric',
         ]);
         
@@ -150,7 +159,6 @@ class TaskController extends Controller
             $task->type             = $request->get('type');
             $task->priority         = $request->get('priority');
             $task->description      = $request->get('description');
-            $task->content          = $request->get('content');
             $task->estimated_hours  = $request->get('hours');
             $task->created          = \Auth::user()->id;
 
@@ -158,7 +166,7 @@ class TaskController extends Controller
 
             DB::commit();
  
-            return redirect('/tasks')->with('success', 'Task is Successfully Updated');
+            return redirect('/tasks')->with('success_created', 'Task is Successfully Updated');
         }
         catch(\Exception $e)
         {
@@ -184,7 +192,7 @@ class TaskController extends Controller
 
             DB::commit();
  
-            return redirect('/tasks')->with('success', 'Task is Successfully Assigned');
+            return redirect('/tasks')->with('success_created', 'Task is Successfully Assigned');
         }
         catch(\Exception $e)
         {
@@ -209,7 +217,7 @@ class TaskController extends Controller
 
                 DB::commit();
  
-                return redirect('/tasks')->with('tabName', 'pending')->with('success', 'Task is Successfully Accepted');
+                return redirect('/tasks')->with('tabName', 'pending')->with('success_pending', 'Task is Successfully Accepted');
             }
 
             elseif (0 == $request->get('submit')) {
@@ -219,7 +227,7 @@ class TaskController extends Controller
 
                 DB::commit();
  
-                return redirect('/tasks')->with('tabName', 'pending')->with('success', 'Task is Successfully Rejected');
+                return redirect('/tasks')->with('tabName', 'pending')->with('success_pending', 'Task is Successfully Rejected');
             }            
         }
         catch(\Exception $e)
@@ -245,7 +253,7 @@ class TaskController extends Controller
 
                 DB::commit();
  
-                return redirect('/tasks')->with('tabName', 'active')->with('success', 'Task is Successfully Completed');
+                return redirect('/tasks')->with('tabName', 'active')->with('success_active', 'Task is Successfully Completed');
             }
 
             elseif (0 == $request->get('submit')) {
@@ -255,7 +263,7 @@ class TaskController extends Controller
 
                 DB::commit();
  
-                return redirect('/tasks')->with('tabName', 'active')->with('success', 'Task is Successfully Hold'); 
+                return redirect('/tasks')->with('tabName', 'active')->with('success_active', 'Task is Successfully Hold'); 
             }         
         }
         catch(\Exception $e)
@@ -278,7 +286,29 @@ class TaskController extends Controller
 
             DB::commit();
  
-            return redirect('/tasks')->with('tabName', 'onhold')->with('success', 'Task is Successfully Hold');          
+            return redirect('/tasks')->with('tabName', 'onhold')->with('success_onhold', 'Task is Successfully Hold');          
+        }
+        catch(\Exception $e)
+        {
+           // dd($e->getMessage());
+            DB::rollback();
+            return redirect('/tasks')->withInput()->with('error','Something Went Wrong!');
+        }   
+    }
+
+    public function reassign_task( Request $request, $id)
+    {    
+        DB::beginTransaction(); 
+        
+        try
+        {
+            $task              = Task::find($id);
+            $task->task_status = 'pending';
+            $task->save();
+
+            DB::commit();
+ 
+            return redirect('/tasks')->with('tabName', 'completed')->with('success_completed', 'Task is Successfully Reassigned');          
         }
         catch(\Exception $e)
         {
@@ -293,6 +323,6 @@ class TaskController extends Controller
         $tasks = Task::findOrFail($id);
         $tasks->delete();
 
-        return redirect::to('/tasks')->with('success', 'Task is successfully deleted');
+        return redirect::to('/tasks')->with('success_created', 'Task is successfully deleted');
     }
 }

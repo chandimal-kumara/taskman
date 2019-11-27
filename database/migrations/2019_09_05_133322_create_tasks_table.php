@@ -21,7 +21,6 @@ class CreateTasksTable extends Migration
             $table->string('type');
             $table->string('priority');
             $table->longText('description');
-            $table->longText('content');
             $table->integer('estimated_hours');
             $table->unsignedbigInteger('created')->nullable();
             $table->unsignedbigInteger('assign')->nullable();

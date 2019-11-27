@@ -75,7 +75,7 @@
                   </div>              
                 </div>
                 
-                <div class="col-md-5">
+                <div class="col-md-4">
                   <div class="form-group form-group-default form-group-default-select2 required @error('priority') has-error @enderror">
                     <label>Priority</label>            
                     <select class="full-width" name="priority" data-placeholder="Select Priority" data-init-plugin="select2">                                        
@@ -86,7 +86,7 @@
                     @error('priority')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <div class="form-group form-group-default required @error('hours') has-error @enderror">
                     <label>Estimated Hours</label>
                     <input type="number" class="form-control" value="{{ old('hours') }}" name="hours" placeholder="Enter Estimated Hours" required>
@@ -101,16 +101,6 @@
                     <label>Description</label>
                     <textarea class="form-control" style="height:60px;" name="description" id="description" placeholder="Briefly Describe about your Task" required>{{ old('description') }}</textarea>
                     @error('description')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group form-group-default required @error('content') has-error @enderror">
-                    <label>Content</label>
-                    <textarea class="form-control" style="height:100px;" name="content" id="content" placeholder="Include your Content" required>{{ old('content') }}</textarea>
-                    @error('content')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
                   </div>
                 </div>
               </div>

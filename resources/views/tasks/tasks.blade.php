@@ -71,11 +71,11 @@
               </div>
               <div class="card-block">
 
-              @if(session()->get('success'))
-                <div class="alert alert-success" role="alert">
+              @if(session()->get('success_created'))
+                <div class="alert alert-success message" role="alert">
                   <button class="close" data-dismiss="alert"></button>
                   <strong>Success: </strong>
-                    {{ session()->get('success') }}  
+                    {{ session()->get('success_created') }}  
                 </div>
               @endif
 
@@ -136,11 +136,11 @@
               </div>
               <div class="card-block">
 
-              @if(session()->get('success'))
-                <div class="alert alert-success" role="alert">
+              @if(session()->get('success_pending'))
+                <div class="alert alert-success message" role="alert">
                   <button class="close" data-dismiss="alert"></button>
                   <strong>Success: </strong>
-                    {{ session()->get('success') }}  
+                    {{ session()->get('success_pending') }}  
                 </div>
               @endif
 
@@ -201,11 +201,11 @@
               </div>
               <div class="card-block">
 
-              @if(session()->get('success'))
-                <div class="alert alert-success" role="alert">
+              @if(session()->get('success_active'))
+                <div class="alert alert-success message" role="alert">
                   <button class="close" data-dismiss="alert"></button>
                   <strong>Success: </strong>
-                    {{ session()->get('success') }}  
+                    {{ session()->get('success_active') }}  
                 </div>
               @endif
 
@@ -265,11 +265,11 @@
               </div>
               <div class="card-block">
 
-              @if(session()->get('success'))
-                <div class="alert alert-success" role="alert">
+              @if(session()->get('success_onhold'))
+                <div class="alert alert-success message" role="alert">
                   <button class="close" data-dismiss="alert"></button>
                   <strong>Success: </strong>
-                    {{ session()->get('success') }}  
+                    {{ session()->get('success_onhold') }}  
                 </div>
               @endif
 
@@ -392,13 +392,13 @@
               </div>
               <div class="card-block">
 
-             <!--  @if(session()->get('success'))
-                <div class="alert alert-success" role="alert">
+              @if(session()->get('success_completed'))
+                <div class="alert alert-success message" role="alert">
                   <button class="close" data-dismiss="alert"></button>
                   <strong>Success: </strong>
-                    {{ session()->get('success') }}  
+                    {{ session()->get('success_completed') }}  
                 </div>
-              @endif -->
+              @endif 
 
                 <table class="table table-hover demo-table-dynamic table-responsive-block" id="tableWithDynamicRows">
                   <thead>
@@ -432,6 +432,7 @@
                         <p>{{$task->estimated_hours}}</p>
                       </td> 
                       <td class="v-align-middle">
+                      <a style="margin-bottom: 2px;" href="javascript:;" data-id="{{$task->id}}" data-title="{{$task->title}}" data-task_code="{{$task->task_code}}" data-url="{{ route('task.reassign_task', $task->id) }}" data-toggle="modal" data-target="#reassign-task" class="btn btn-success reassignTask">Reassign</a>
                         <!-- <a data-title="{{$task->title}}" data-url="{{ route('task.destroy_task', $task->id) }}" data-toggle="modal" data-target="#delete-task" class="btn btn-danger deleteTask"><i class="fa fa-trash"></i></a> -->
                       </td>     
                     </tr>
@@ -474,7 +475,7 @@
 </div>
 
 
- <!--assign Modal -->
+<!--assign Modal -->
 <div class="modal fade slide-up disable-scroll" id="assign-task" tabindex="-1" role="dialog" aria-hidden="false">
   <div class="modal-dialog ">
     <div class="modal-content-wrapper">
@@ -576,7 +577,7 @@
 </div>
 <!-- /.modal-dialog -->
 
-<!--hold Modal -->
+<!--action2 Modal -->
 <div class="modal fade slide-up disable-scroll" id="action2-task" tabindex="-1" role="dialog" aria-hidden="false">
   <div class="modal-dialog ">
     <div class="modal-content-wrapper">
@@ -664,12 +665,63 @@
 </div>
 <!-- /.modal-dialog -->
 
+<!--reassign Modal -->
+<div class="modal fade slide-up disable-scroll" id="reassign-task" tabindex="-1" role="dialog" aria-hidden="false">
+  <div class="modal-dialog ">
+    <div class="modal-content-wrapper">
+      <div class="modal-content">
+        <div class="modal-header clearfix text-left">
+        <button type="button" style="position: absolute; right: 0; padding: 2px 4px; margin-right:25px;" class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
+          <h4>You can Reassign <span class="semi-bold"> this Task</span></h4>
+          <!-- <p class="p-b-10">We need payment information inorder to process your order</p> -->
+        </div><br>
+        <div class="modal-body">
+          <form action="{{ route('task.reassign_task', $task->id) }}" method="post" id="reassignForm">
+          {{ csrf_field() }}
+          {{ method_field('PUT') }}
+            <div class="form-group-attached">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class=" ">
+                    <label><b>Task ID :</b></label>
+                    <!-- <span id="taskId"></span> -->
+                    <span id="reassign_task_code"></span>  
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="">
+                    <label><b>Task Name :</b></label>
+                    <span id="reassign_task_title"></span>                    
+                  </div>
+                </div>
+              </div><br>
+              <div class="pull-right">
+                <button type="submit" name="submit" class="btn btn-primary">Reassign Now</button>
+              </div>
+            </div>           
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+</div>
+<!-- /.modal-dialog -->
+
 @endsection
 
 @section('script')
 
 <script type="text/javascript">
 
+// fade out alert
+  window.setTimeout(function() {
+      $(".message").fadeTo(1000, 0).slideUp(1000, function(){
+          $(this).remove(); 
+      });
+  }, 3000);
+
+// select2 modal dropdown issue fixed
   $('#mySelect2').select2({
       dropdownParent: $('#assign-task')
   });
@@ -724,6 +776,17 @@ $(document).on("click", ".unholdTask", function () {
     $("#unholdForm").attr('action', url);
     $('#unhold_task_code').text(task_code);
     $('#unhold_task_title').text(title);
+  });
+
+// reassign modal script
+$(document).on("click", ".reassignTask", function () {        
+    //var url = $(this).data('url');
+    var task_code = $(this).data('task_code');
+    var title = $(this).data('title');
+    //alert(title);
+    //$("#reassignForm").attr('action', url);
+    $('#reassign_task_code').text(task_code);
+    $('#reassign_task_title').text(title);
   });
 
 </script>
