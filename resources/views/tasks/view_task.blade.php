@@ -122,7 +122,14 @@
             <img alt="Profile Image" width="33" height="33" data-src-retina="/assets/img/profiles/{{ $comment->type }}.png" data-src="/assets/img/profiles/{{ $comment->type }}.png" src="/assets/img/profiles/{{ $comment->type }}.png">
           </div>
           <h5>{{ Str::title($comment->name) }}</h5>
-          <h6>User
+          <h6>
+            @if($comment->created == $comment->id)
+              Task creator
+            @elseif($comment->assign == $comment->id)
+              Task assignee
+            @else
+              Other user
+            @endif
             <!-- <span class="location semi-bold"><i class="fa fa-map-marker"></i> SF, California</span> -->
           </h6>
         </div>
@@ -131,7 +138,7 @@
           <div class="via">
             {{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y')}}
             at
-            {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i A')}}
+            {{ \Carbon\Carbon::parse($comment->created_at)->format('h:i A')}}
           </div>
         </div>
       </div>

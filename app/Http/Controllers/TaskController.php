@@ -51,7 +51,7 @@ class TaskController extends Controller
         $data['comments']   = DB::table('task_comments')
                             ->join('tasks', 'tasks.id', '=', 'task_comments.task_id')
                             ->join('users', 'users.id', '=', 'task_comments.user_id')
-                            ->select('task_comments.comments', 'users.name', 'users.type', 'tasks.created', 'task_comments.created_at')
+                            ->select('task_comments.comments', 'users.name','users.id', 'users.type', 'tasks.created', 'tasks.assign', 'task_comments.created_at')
                             ->where('task_comments.task_id', '=', $id)
                             ->orderBy('task_comments.created_at','desc')
                             ->get();
