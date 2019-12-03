@@ -18,7 +18,9 @@ class TasksTableSeeder extends Seeder
                 'estimated_hours'  =>  50,
                 'created'          =>  1,
                 'assign'           =>  null,
-                'task_status'      =>  'created',
+                'task_status'      =>  'new', 
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',               
             ],
 
             [
@@ -30,7 +32,9 @@ class TasksTableSeeder extends Seeder
                 'estimated_hours'  =>  75,
                 'created'          =>  2,
                 'assign'           =>  null,
-                'task_status'      =>  'created',
+                'task_status'      =>  'new',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -42,7 +46,9 @@ class TasksTableSeeder extends Seeder
                 'estimated_hours'  =>  150,
                 'created'          =>  3,
                 'assign'           =>  1,
-                'task_status'      =>  'pending',
+                'task_status'      =>  'assigned',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -54,7 +60,9 @@ class TasksTableSeeder extends Seeder
                 'estimated_hours'  =>  100,
                 'created'          =>  1,
                 'assign'           =>  2,
-                'task_status'      =>  'pending',
+                'task_status'      =>  'assigned',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -67,6 +75,8 @@ class TasksTableSeeder extends Seeder
                 'created'          =>  5,
                 'assign'           =>  4,
                 'task_status'      =>  'active',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -79,6 +89,8 @@ class TasksTableSeeder extends Seeder
                 'created'          =>  6,
                 'assign'           =>  5,
                 'task_status'      =>  'active',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -91,6 +103,8 @@ class TasksTableSeeder extends Seeder
                 'created'          =>  2,
                 'assign'           =>  3,
                 'task_status'      =>  'onhold',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -103,6 +117,8 @@ class TasksTableSeeder extends Seeder
                 'created'          =>  1,
                 'assign'           =>  2,
                 'task_status'      =>  'onhold',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -114,7 +130,9 @@ class TasksTableSeeder extends Seeder
                 'estimated_hours'  =>  135,
                 'created'          =>  2,
                 'assign'           =>  6,
-                'task_status'      =>  'rejected',
+                'task_status'      =>  'cancelled',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -126,7 +144,9 @@ class TasksTableSeeder extends Seeder
                 'estimated_hours'  =>  120,
                 'created'          =>  4,
                 'assign'           =>  5,
-                'task_status'      =>  'rejected',
+                'task_status'      =>  'cancelled',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -139,6 +159,8 @@ class TasksTableSeeder extends Seeder
                 'created'          =>  1,
                 'assign'           =>  3,
                 'task_status'      =>  'completed',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
 
             [
@@ -151,6 +173,8 @@ class TasksTableSeeder extends Seeder
                 'created'          =>  2,
                 'assign'           =>  5,
                 'task_status'      =>  'completed',
+                'created_at'       =>  '2000-01-01 00:00:00',
+                'updated_at'       =>  '2001-01-01 00:00:00',
             ],
         ];
             

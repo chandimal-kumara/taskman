@@ -16,7 +16,7 @@
       <!-- START BREADCRUMB -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-        <li class="breadcrumb-item link"><a href="{{ route('task.tasks') }}">Tasks</a></li>
+        <li class="breadcrumb-item link"><a href="#">Tasks</a></li>
         <li class="breadcrumb-item active link"><a href="{{ route('task.add_task') }}">Add Task</a></li>
       </ol>
       <!-- END BREADCRUMB -->
@@ -25,7 +25,7 @@
 </div>
 <!-- END JUMBOTRON -->
 
-<div class=" container-fluid   container-fixed-lg">
+<div class=" container-fluid container-fixed-lg">
 <!-- <h3><span class="semi-bold"  style="margin-left: 2%;">Tasks</span> Panel</h3>  -->
   <div class="row box">
   <div class="col-lg-1"></div>

@@ -63,6 +63,8 @@
 <script src="{{ asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/plugins/skycons/skycons.js') }}" type="text/javascript"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
   
 
     

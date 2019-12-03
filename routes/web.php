@@ -5,18 +5,21 @@ Auth::routes();
 
 // Task Routes
 Route::get('/', 'TaskController@index')->name('task.index');
-Route::get('/tasks', 'TaskController@tasks')->name('task.tasks');
-Route::get('/tasks/add_task', 'TaskController@add_task')->name('task.add_task');
-Route::get('/tasks/view_task/{id}', 'TaskController@view_task')->name('task.view_task');
-Route::get('/tasks/edit_task/{id}', 'TaskController@edit_task')->name('task.edit_task');
-Route::put('/tasks/update_task/{id}', 'TaskController@update_task')->name('task.update_task');
+Route::get('/tasks/admin_view_tasks', 'TaskController@admin_view_tasks')->name('task.admin_view_tasks');
+Route::get('/tasks/my_view_tasks', 'TaskController@my_view_tasks')->name('task.my_view_tasks');
+Route::get('/tasks/all_tasks', 'TaskController@all_tasks')->name('task.all_tasks');
+Route::post('/tasks/all_tasks', 'TaskController@all_tasks')->name('task.all_tasks');
+Route::delete('/tasks/delete_task/{id}', 'TaskController@destroy_task')->name('task.destroy_task');
 Route::put('/tasks/assign_task/{id}', 'TaskController@assign_task')->name('task.assign_task');
 Route::put('/tasks/action_task/{id}', 'TaskController@action_task')->name('task.action_task');
 Route::put('/tasks/action2_task/{id}', 'TaskController@action2_task')->name('task.action2_task');
 Route::put('/tasks/unhold_task/{id}', 'TaskController@unhold_task')->name('task.unhold_task');
 Route::put('/tasks/reassign_task/{id}', 'TaskController@reassign_task')->name('task.reassign_task');
+Route::get('/tasks/add_task', 'TaskController@add_task')->name('task.add_task');
+Route::get('/tasks/view_task/{id}', 'TaskController@view_task')->name('task.view_task');
+Route::get('/tasks/edit_task/{id}', 'TaskController@edit_task')->name('task.edit_task');
+Route::put('/tasks/update_task/{id}', 'TaskController@update_task')->name('task.update_task');
 Route::post('/tasks/save_task', 'TaskController@save_task')->name('task.save_task');
-Route::delete('/tasks/delete_task/{id}', 'TaskController@destroy_task')->name('task.destroy_task');
 
 // User Routes
 Route::get('/users', 'UserController@users')->name('user.users');

@@ -15,7 +15,7 @@
       <!-- START BREADCRUMB -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-        <li class="breadcrumb-item link"><a href="{{ route('task.tasks') }}">Tasks</a></li>
+        <li class="breadcrumb-item link"><a href="#">Tasks</a></li>
         <li class="breadcrumb-item link active"><a href="#">Edit Tasks</a></li>
       </ol>
       <!-- END BREADCRUMB -->

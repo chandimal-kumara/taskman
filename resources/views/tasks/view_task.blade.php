@@ -16,7 +16,7 @@
       <!-- START BREADCRUMB -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-        <li class="breadcrumb-item link"><a href="{{ route('task.tasks') }}">Tasks</a></li>
+        <li class="breadcrumb-item link"><a href="#">Tasks</a></li>
         <li class="breadcrumb-item link active"><a href="#">View Task</a></li>
       </ol>
       <!-- END BREADCRUMB -->
@@ -25,7 +25,7 @@
 </div>
 <!-- END JUMBOTRON -->
 
-<div class=" container-fluid   container-fixed-lg">
+<div class="container-fluid container-fixed-lg">
   <!-- <h3><span class="semi-bold"  style="margin:5px;">Tasks</span> Panel</h3><br> -->
             <!-- START card -->
   <div class="row box">
@@ -33,7 +33,7 @@
     <div class="card card-transparent col-lg-10 col-md-12">
       <ul class="nav nav-tabs nav-tabs-fillup">
           <li class="nav-item">
-              <a href="#" class="active" data-toggle="tab" data-target="#slide1"><span>View {{  $tasks->task_status }} Task</span></a>
+              <a href="#" class="active" data-toggle="tab" data-target="#slide1"><span>View {{  $task->task_status }} Task</span></a>
           </li>
       </ul> 
       <div class="tab-content">
@@ -44,61 +44,87 @@
               <tbody>                                                                                                                         
                 <tr role="row" class="odd">
                   <td class="v-align-middle semi-bold sorting_1"><span class="title">Task Code :</span></td>                            
-                  <td class="v-align-middle semi-bold">{{ $tasks->task_code }}</td>
+                  <td class="v-align-middle semi-bold">{{ $task->task_code }}</td>
                 </tr>
                 <tr role="row" class="even">
+                  <td class="v-align-middle semi-bold sorting_1"><span class="title">Task Creator :</span></td>                            
+                  <td class="v-align-middle semi-bold">
+                  @foreach($users as $user)
+                    @if($task->created == $user->id)
+                      {{$user->user_id}}
+                    @endif
+                  @endforeach
+                  </td>
+                </tr>                
+                <tr role="row" class="odd">
+                  <td class="v-align-middle semi-bold sorting_1"><span class="title">Task Assignee :</span></td>                            
+                  <td class="v-align-middle semi-bold">
+                  @if($task->task_status == 'new')
+                    <a href="javascript:;" data-id="{{$task->id}}" data-title="{{$task->title}}" data-task_code="{{$task->task_code}}" data-url="{{ route('task.assign_task', $task->id) }}" data-toggle="modal" data-target="#assign-task" class="btn btn-success assignTask"><i class="fa fa-paper-plane"></i> Assign</a>
+                  @else
+                    @foreach($users as $user)
+                      @if($task->assign == $user->id)
+                        {{$user->user_id}}
+                      @endif
+                    @endforeach
+                  @endif                    
+                  </td>
+                </tr>                
+                <tr role="row" class="even">
                   <td class="v-align-middle semi-bold sorting_1"><span class="title">Title :</span></td>                            
-                  <td class="v-align-middle semi-bold">{{ $tasks->title }}</td>
+                  <td class="v-align-middle semi-bold">{{ $task->title }}</td>
                 </tr>
                 <tr role="row" class="odd">
                   <td class="v-align-middle semi-bold sorting_1"><span class="title">Type :</span></td>                            
                   <td class="v-align-middle semi-bold">
                     @foreach($types as $type)
-                      @if ($tasks->type == $type->code) {{$type->name}} @endif
+                      @if ($task->type == $type->code) {{$type->name}} @endif
                     @endforeach
                   </td>
                 </tr>
                 <tr role="row" class="even">
                   <td class="v-align-middle semi-bold sorting_1"><span class="title">Priority :</span></td>                            
-                  <td class="v-align-middle semi-bold">@if ($tasks->priority == 'LW') low @elseif ($tasks->priority == 'MD') Medium @elseif ($tasks->priority == 'HG') High @endif</td>
+                  <td class="v-align-middle semi-bold">@if ($task->priority == 'LW') low @elseif ($task->priority == 'MD') Medium @elseif ($task->priority == 'HG') High @endif</td>
                 </tr>
                 <tr role="row" class="odd">
                   <td class="v-align-middle semi-bold sorting_1"><span class="title">Estimated Hours :</span></td>                            
-                  <td class="v-align-middle semi-bold">{{ $tasks->estimated_hours }}</td>
+                  <td class="v-align-middle semi-bold">{{ $task->estimated_hours }}</td>
+                </tr>
+                <tr role="row" class="even">
+                  <td class="v-align-middle semi-bold sorting_1"><span class="title">Status :</span></td>                            
+                  <td class="v-align-middle semi-bold"><span class="label label-info">{{ $task->task_status }}</span></td>
                 </tr>
               </tbody>
             </table>  
             <div style="padding:10px 20px;">
                   <p class="bold sm-p-t-20">Description :</p>
-                  <p>{{ $tasks->description }}</p> 
+                  <p>{{ $task->description }}</p> 
             </div>                      
             <div class="clearfix" style="padding:0px 20px;">
-              @if ($tasks->task_status == 'created') 
-              <a class="btn btn-primary" href="{{ route('task.edit_task', $tasks->id) }}">Edit Task</a>
-              <a href="javascript:;" data-id="{{$tasks->id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('task.assign_task', $tasks->id) }}" data-toggle="modal" data-target="#assign-task" class="btn btn-success assignTask"><i class="fa fa-paper-plane"></i> Assign</a>
-              @elseif ($tasks->task_status == 'pending') 
-              <a href="javascript:;" data-id="{{$tasks->id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('task.action_task', $tasks->id) }}" data-toggle="modal" data-target="#action-task" class="btn btn-success actionTask">Action</a>
-              @elseif ($tasks->task_status == 'active')
-              <a href="javascript:;" data-id="{{$tasks->id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('taskComment.save_comment') }}" data-toggle="modal" data-target="#add-comment" class="btn btn-primary addComment">Add comment</a>
-              <a href="javascript:;" data-task_id="{{$tasks->task_id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('task.action2_task', $tasks->id) }}" data-toggle="modal" data-target="#action2-task" class="btn btn-success action2Task">Action</a>
-              @elseif ($tasks->task_status == 'onhold')
-              <a href="javascript:;" data-id="{{$tasks->id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('taskComment.save_comment') }}" data-toggle="modal" data-target="#add-comment" class="btn btn-primary addComment">Add comment</a>
-              <a href="javascript:;" data-id="{{$tasks->id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('task.unhold_task', $tasks->id) }}" data-toggle="modal" data-target="#unhold-task" class="btn btn-success unholdTask">UnHold</a>          
-              @elseif ($tasks->task_status == 'completed')
-              <a href="javascript:;" data-id="{{$tasks->id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('taskComment.save_comment') }}" data-toggle="modal" data-target="#add-comment" class="btn btn-primary addComment">Add comment</a>
-              <a href="javascript:;" data-id="{{$tasks->id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('task.reassign_task', $tasks->id) }}" data-toggle="modal" data-target="#reassign-task" class="btn btn-success reassignTask">Reassign</a>
+                <a href="javascript:;" data-id="{{$task->id}}" data-title="{{$task->title}}" data-task_code="{{$task->task_code}}" data-url="{{ route('taskComment.save_comment') }}" data-toggle="modal" data-target="#add-comment" class="btn btn-primary addComment">Add comment</a>              
+              @if ($task->task_status == 'new') 
+                <a class="btn btn-warning" href="{{ route('task.edit_task', $task->id) }}">Edit Task</a>                
+              @elseif ($task->task_status == 'assigned') 
+                <a href="javascript:;" data-id="{{$task->id}}" data-title="{{$task->title}}" data-task_code="{{$task->task_code}}" data-url="{{ route('task.action_task', $task->id) }}" data-toggle="modal" data-target="#action-task" class="btn btn-success actionTask">Action</a>
+              @elseif ($task->task_status == 'active')              
+                <a href="javascript:;" data-task_id="{{$task->task_id}}" data-title="{{$task->title}}" data-task_code="{{$task->task_code}}" data-url="{{ route('task.action2_task', $task->id) }}" data-toggle="modal" data-target="#action2-task" class="btn btn-success action2Task">Action</a>
+              @elseif ($task->task_status == 'onhold')              
+                <a href="javascript:;" data-id="{{$task->id}}" data-title="{{$task->title}}" data-task_code="{{$task->task_code}}" data-url="{{ route('task.unhold_task', $task->id) }}" data-toggle="modal" data-target="#unhold-task" class="btn btn-success unholdTask">UnHold</a>          
+              @elseif ($task->task_status == 'completed')              
+                <a href="javascript:;" data-id="{{$task->id}}" data-title="{{$task->title}}" data-task_code="{{$task->task_code}}" data-url="{{ route('task.reassign_task', $task->id) }}" data-toggle="modal" data-target="#reassign-task" class="btn btn-success reassignTask">Reassign</a>
               @else
-              <a href="javascript:;" data-id="{{$tasks->id}}" data-title="{{$tasks->title}}" data-task_code="{{$tasks->task_code}}" data-url="{{ route('taskComment.save_comment') }}" data-toggle="modal" data-target="#add-comment" class="btn btn-primary addComment">Add comment</a>
-              @endif
-              <a class="btn btn-complete" href="{{ URL::previous() }}">Go Back</a>
+                
+              @endif              
+                <a class="btn btn-complete" href="{{ URL::previous() }}">Go Back</a>
             </div>
             <!-- END card -->
           </div>  
         </div>
       </div>
-    </div>                      
+    </div> 
+    <div class="col-lg-1"></div>                     
   </div>
-  <div class="col-lg-1"></div>
+  
   
   <div class="row box">              
     <div class="col-lg-1"></div>
@@ -122,31 +148,33 @@
             <img alt="Profile Image" width="33" height="33" data-src-retina="/assets/img/profiles/{{ $comment->type }}.png" data-src="/assets/img/profiles/{{ $comment->type }}.png" src="/assets/img/profiles/{{ $comment->type }}.png">
           </div>
           <h5>{{ Str::title($comment->name) }}</h5>
-          <h6>
+          <h6>Wrote 
             @if($comment->created == $comment->id)
-              Task creator
+              <span style="font-weight: bold;">(Task creator)</span>
             @elseif($comment->assign == $comment->id)
-              Task assignee
+              <span style="font-weight: bold;">(Task assignee)</span>
             @else
-              Other user
+              <span style="font-weight: bold;">(Other user)</span>
             @endif
+            on 
+            {{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y')}}
+            at
+            {{ \Carbon\Carbon::parse($comment->created_at)->format('h:i A')}}
             <!-- <span class="location semi-bold"><i class="fa fa-map-marker"></i> SF, California</span> -->
           </h6>
         </div>
         <div class="card-description">
           <p>{{ $comment->comments }}</p>   
-          <div class="via">
-            {{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y')}}
-            at
-            {{ \Carbon\Carbon::parse($comment->created_at)->format('h:i A')}}
-          </div>
+         <!--  <div class="via">
+            
+          </div>  -->
         </div>
       </div>
     @endforeach 
-
-    </div>
     <div class="col-lg-1"></div>
-  </div> 
+    </div>
+    
+  
 </div>
 
 <!-- END card -->
@@ -220,7 +248,7 @@
           <!-- <p class="p-b-10">We need payment information inorder to process your order</p> -->
         </div><br>
         <div class="modal-body">
-          <form action="{{ route('task.action_task', $tasks->id) }}" method="post" id="actionForm">
+          <form action="{{ route('task.action_task', $task->id) }}" method="post" id="actionForm">
           {{ csrf_field() }}
           {{ method_field('PUT') }}
             <div class="form-group-attached">
@@ -264,7 +292,7 @@
           <!-- <p class="p-b-10">We need payment information inorder to process your order</p> -->
         </div><br>
         <div class="modal-body">
-          <form action="{{ route('task.action2_task', $tasks->id) }}" method="post" id="action2Form">
+          <form action="{{ route('task.action2_task', $task->id) }}" method="post" id="action2Form">
           {{ csrf_field() }}
           {{ method_field('PUT') }}
             <div class="form-group-attached">
@@ -308,7 +336,7 @@
           <!-- <p class="p-b-10">We need payment information inorder to process your order</p> -->
         </div><br>
         <div class="modal-body">
-          <form action="{{ route('task.unhold_task', $tasks->id) }}" method="post" id="unholdForm">
+          <form action="{{ route('task.unhold_task', $task->id) }}" method="post" id="unholdForm">
           {{ csrf_field() }}
           {{ method_field('PUT') }}
             <div class="form-group-attached">
@@ -355,20 +383,7 @@
           {{ csrf_field() }}
           {{ method_field('POST') }}
             <div class="form-group-attached">
-              <!-- <div class="row m-b-20">
-                <div class="col-md-4">
-                  <div class=" ">
-                    <label><b>Task ID :</b></label>
-                    <span id="add_comment_task_code"></span>                                
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <div class="">
-                    <label><b>Task Name :</b></label>
-                    <span id="add_comment_task_title"></span>               
-                  </div>
-                </div>
-              </div> -->
+              </div> 
               <div class="row m-b-20">
                 <div class="col-md-12">
                     <label><b>Comment :</b></label>
@@ -377,7 +392,7 @@
                     @error('comment')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
                   </div>
                 </div>
-                <input type="hidden" id="add_comment_task_id" value="{{ $tasks->id }}" name="task_id">
+                <input type="hidden" id="add_comment_task_id" value="{{ $task->id }}" name="task_id">
               </div>              
               <div class="pull-right">
                 <button type="submit" name="submit" class="btn btn-complete">Add Comment</button>            
@@ -403,7 +418,7 @@
           <!-- <p class="p-b-10">We need payment information inorder to process your order</p> -->
         </div><br>
         <div class="modal-body">
-          <form action="{{ route('task.reassign_task', $tasks->id) }}" method="post" id="reassignForm">
+          <form action="{{ route('task.reassign_task', $task->id) }}" method="post" id="reassignForm">
           {{ csrf_field() }}
           {{ method_field('PUT') }}
             <div class="form-group-attached">
@@ -456,11 +471,11 @@ $('#mySelect2').select2({
 
 // assign modal script
 $(document).on("click", ".assignTask", function () {        
-    var url = $(this).data('url');
+    //var url = $(this).data('url');
     var task_code = $(this).data('task_code');
     var title = $(this).data('title');
     //alert(task_code);
-    $("#assignForm").attr('action', url);
+    //$("#assignForm").attr('action', url);
     $('#assign_task_code').text(task_code);
     $('#assign_task_title').text(title);
   });

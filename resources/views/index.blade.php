@@ -27,7 +27,7 @@
     
   <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-  <div class="card card-transparent" id="alert">
+  <div class="card card-transparent alert">
     <div class="card-block" style="padding:0;">
       <div class="alert alert-info" role="alert">
         <p class="pull-left">Meeting rescheduled</p>
@@ -61,15 +61,15 @@
                 </div>
               </div>
               <div class="p-l-20">
-                <h3 class="no-margin p-b-5 text-white">CREATED TASKS ({{$created}})</h3>
+                <h3 class="no-margin p-b-5 text-white">CREATED TASKS ({{$new}})</h3>
                   <p class="small hint-text m-t-5">
-                    <span class="label  font-montserrat m-r-5">{{ floor($created / $tasks * 100) }}%</span>
+                    <span class="label  font-montserrat m-r-5">{{ floor($new / $tasks * 100) }}%</span>
                   </p>
               </div>
               <div class="mt-auto">
                 <div class="progress progress-small m-b-20">
                   <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                  <div class="progress-bar progress-bar-white" style="width:{{ $created / $tasks * 100 }}%"></div>
+                  <div class="progress-bar progress-bar-white" style="width:{{ $new / $tasks * 100 }}%"></div>
                   <!-- END BOOTSTRAP PROGRESS -->
                 </div>
               </div>
@@ -92,15 +92,15 @@
                 </div>
               </div>
               <div class="p-l-20">
-                <h3 class="no-margin p-b-5 text-white">PENDING TASKS ({{$pending}})</h3>
+                <h3 class="no-margin p-b-5 text-white">PENDING TASKS ({{$assigned}})</h3>
                   <p class="small hint-text m-t-5">
-                    <span class="label  font-montserrat m-r-5">{{ floor($pending / $tasks * 100) }}%</span>
+                    <span class="label  font-montserrat m-r-5">{{ floor($assigned / $tasks * 100) }}%</span>
                   </p>
               </div>
               <div class="mt-auto">
                 <div class="progress progress-small m-b-20">
                   <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                  <div class="progress-bar progress-bar-white" style="width:{{ $pending / $tasks * 100 }}%"></div>
+                  <div class="progress-bar progress-bar-white" style="width:{{ $assigned / $tasks * 100 }}%"></div>
                   <!-- END BOOTSTRAP PROGRESS -->
                 </div>
               </div>
@@ -214,7 +214,7 @@
             <div class="full-height d-flex flex-column">
               <div class="card-header ">
                 <div class="card-title text-black">
-                  <span class="font-montserrat fs-11 all-caps">ALL REJECTED TASKS <i class="fa fa-chevron-right"></i></span>
+                  <span class="font-montserrat fs-11 all-caps">ALL CANCELLED TASKS <i class="fa fa-chevron-right"></i></span>
                 </div>
                 <div class="card-controls">
                   <ul>
@@ -224,15 +224,15 @@
                 </div>
               </div>
               <div class="p-l-20">
-                <h3 class="no-margin p-b-5 text-white">REJECTED TASKS ({{$rejected}})</h3>
+                <h3 class="no-margin p-b-5 text-white">CANCELLED TASKS ({{$cancelled}})</h3>
                   <p class="small hint-text m-t-5">
-                    <span class="label  font-montserrat m-r-5">{{ floor($rejected / $tasks * 100) }}%</span>
+                    <span class="label  font-montserrat m-r-5">{{ floor($cancelled / $tasks * 100) }}%</span>
                   </p>
               </div>
               <div class="mt-auto">
                 <div class="progress progress-small m-b-20">
                   <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                  <div class="progress-bar progress-bar-white" style="width:{{ $active / $tasks * 100 }}%"></div>
+                  <div class="progress-bar progress-bar-white" style="width:{{ $cancelled / $tasks * 100 }}%"></div>
                   <!-- END BOOTSTRAP PROGRESS -->
                 </div>
               </div>
@@ -433,11 +433,19 @@
 
 <script type="text/javascript">
 
-window.setTimeout(function() {
+/* window.setTimeout(function() {
     $("#alert").fadeTo(1000, 0).slideUp(1000, function(){
         $(this).remove(); 
     });
-}, 5000);
+}, 5000); */
+
+window.setTimeout(function() {
+    //$(".custom-alert").alert('close'); <--- Do not use this
+  
+    $(".alert").slideUp(500, function() {
+        $(this).remove();
+    });
+}, 4000);
 
 </script>
 
