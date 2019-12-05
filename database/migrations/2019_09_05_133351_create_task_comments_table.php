@@ -13,8 +13,8 @@ class CreateTaskCommentsTable extends Migration
             $table->unsignedBigInteger('task_id');
             $table->unsignedBigInteger('user_id');
             $table->string('comments');
-            $table->foreign('task_id')->references('id')->on('tasks');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

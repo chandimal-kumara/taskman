@@ -66,6 +66,15 @@ class UsersTableSeeder extends Seeder
                 'password'          =>  bcrypt('kelum'),
                 'status'            =>  'active',
             ],
+
+            [
+                'user_id'           =>  'suneth_m7',
+                'name'              =>  'suneth',
+                'email'             =>  'suneth@erp.com',
+                'type'              =>  'manager',
+                'password'          =>  bcrypt('suneth'),
+                'status'            =>  'active',
+            ],
         ];
             
         User::insert($users);

@@ -2,14 +2,7 @@
 
 @section('content')
 
-<style>
-.box{ margin:5px; }
-.link a { color:blue; }
-.link a:hover { color:#6DC0F9; }
-.table-hover thead tr th {  color: gray; font-weight: bold; font-size:12px;}
-.table-hover thead { background-color: #F1F1F1;}
-.align-links { margin-right:20px; }
-</style>
+@include('custom/css')
 
 <!-- START JUMBOTRON -->
 <div class="jumbotron" data-pages="parallax">
@@ -18,7 +11,7 @@
         <!-- START BREADCRUMB -->
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item link"><a href="#">Tasks</a></li>
+            <li class="breadcrumb-item link"><a href="{{ route('task.all_tasks') }}">All View</a></li>
             <li class="breadcrumb-item active link"><a href="{{ route('task.all_tasks') }}">All Tasks</a></li>
         </ol>
         <!-- END BREADCRUMB -->
@@ -31,21 +24,16 @@
     <!-- <h3><span class="semi-bold"  style="margin-left: 2%;">Tasks</span> Panel</h3>  -->
     <div class="card card-transparent ">
     <!-- Nav tabs -->
-        @php
-
-            $tabName = session()->get('tabName');
-
-        @endphp
 
         <ul class="nav nav-tabs nav-tabs-fillup" data-init-reponsive-tabs="dropdownfx">
             <li class="nav-item">
-                <a href="#" class="@if (empty($tabName) || $tabName == 'assigned') active @endif" data-toggle="tab" data-target="#slide1"><span>All Tasks</span></a>
+                <a href="#" class="active"><span>All Tasks</span></a>
             </li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane slide-left @if (empty($tabName) || $tabName == 'assigned') active @endif" id="slide1">
+            <div class="tab-pane slide-left active">
                 <div class=" container-fluid container-fixed-lg">
                     <!-- START card -->
                     <div class="card card-transparent">
@@ -115,9 +103,7 @@
                                                 <p>{{$task->estimated_hours}}</p>
                                             </td> 
                                             <td class="v-align-middle">
-                                                <span class="label label-info">{{ $task->task_status }}</span>
-                                                <!-- <a href="javascript:;" onclick="deleteData({{$task->id}})" data-toggle="modal" data-target="#delete-task" class="btn btn-danger"><i class="fa fa-trash"></i></a> -->                                    
-                                                <!-- <a href="javascript:;" data-id="{{$task->id}}" data-title="{{$task->title}}" data-task_code="{{$task->task_code}}" data-url="{{ route('task.action_task', $task->id) }}" data-toggle="modal" data-target="#action-task" class="btn btn-success actionTask">Action</a>                                         -->
+                                                <span class="label label-info">{{ $task->task_status }}</span>                                                                    
                                             </td>     
                                         </tr>
                                         @endforeach 
@@ -145,5 +131,7 @@
 @endsection
 
 @section('script')
+
+@include('custom/js')
 
 @endsection

@@ -2,11 +2,7 @@
 
 @section('content')
 
-<style>
-  .box { margin:5px; }
-  .link a { color:blue; }
-  .link a:hover { color:#6DC0F9; }
-</style>
+@include('custom/css')
 
 <!-- START JUMBOTRON -->
 <div class="jumbotron" data-pages="parallax">
@@ -27,7 +23,7 @@
     
   <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-  <div class="card card-transparent alert">
+  <div class="card card-transparent message">
     <div class="card-block" style="padding:0;">
       <div class="alert alert-info" role="alert">
         <p class="pull-left">Meeting rescheduled</p>
@@ -431,23 +427,7 @@
 
 @section('script')
 
-<script type="text/javascript">
-
-/* window.setTimeout(function() {
-    $("#alert").fadeTo(1000, 0).slideUp(1000, function(){
-        $(this).remove(); 
-    });
-}, 5000); */
-
-window.setTimeout(function() {
-    //$(".custom-alert").alert('close'); <--- Do not use this
-  
-    $(".alert").slideUp(500, function() {
-        $(this).remove();
-    });
-}, 4000);
-
-</script>
+@include('custom/js')
 
 @endsection
 

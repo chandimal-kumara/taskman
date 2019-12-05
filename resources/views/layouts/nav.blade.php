@@ -48,11 +48,11 @@
                 <span class="icon-thumbnail"><i class="fa fa-tasks"></i></span>
                 <ul class="sub-menu">            
                     <li class="">
-                        <a href="{{ route('task.admin_view_tasks') }}">Admin View</a>
+                        <a href="{{ route('task.new_tasks') }}">Manager View</a>
                         <span class="icon-thumbnail"><i class="fa fa-list"></i></span>
                     </li>
                     <li class="">
-                        <a href="{{ route('task.my_view_tasks') }}">My View</a>
+                        <a href="{{ route('task.assigned_tasks') }}">My View</a>
                         <span class="icon-thumbnail"><i class="fa fa-list"></i></span>
                     </li>
                     <li class="">
@@ -66,3 +66,4 @@
     </div>
     <!-- END SIDEBAR MENU -->
 </nav>
+

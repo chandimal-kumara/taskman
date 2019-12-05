@@ -2,12 +2,7 @@
 
 @section('content')
 
-<style>
-  .has-error { background-color: rgba(245, 87, 83, 0.1);}
-  .box{ margin:5px; }
-  .link a { color:blue; }
-  .link a:hover { color:#6DC0F9; }
-</style>
+@include('custom/css')
 
 <!-- START JUMBOTRON -->
 <div class="jumbotron" data-pages="parallax">
@@ -16,7 +11,7 @@
       <!-- START BREADCRUMB -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-        <li class="breadcrumb-item link"><a href="#">Tasks</a></li>
+        <li class="breadcrumb-item link"><a href="task.new_tasks">Manager View</a></li>
         <li class="breadcrumb-item active link"><a href="{{ route('task.add_task') }}">Add Task</a></li>
       </ol>
       <!-- END BREADCRUMB -->
@@ -52,17 +47,29 @@
             <form method="post" action="{{ route('task.save_task') }}">
             {{csrf_field()}}
               <div class="row clearfix">         
-                <div class="col-md-12">
+                <div class="col-md-8">
                   <div class="form-group form-group-default required @error('title') has-error @enderror">
                     <label>Title</label>
                     <input type="text" value="{{ old('title') }}" class="form-control" name="title" placeholder="Enter Task Title here" required>
                     @error('title')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
                   </div>
                 </div>
+                <div class="col-md-4">
+                  <div class="form-group form-group-default form-group-default-select2 required @error('department') has-error @enderror">
+                    <label>Department</label>            
+                    <select name="department" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
+                      <option value="Choose...">---- Choose ----</option><!--selected by default-->
+                        @foreach($departments as $department)
+                          <option value="{{ $department->id }}"  @if(old('department') == $department->id) selected @endif> {{ $department->dep_id }} </option>
+                        @endforeach
+                    </select>
+                    @error('department')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                  </div>
+                </div>
               </div>
 
               <div class="row">
-                <div class="col-md-5">                              
+                <div class="col-md-4">                              
                   <div class="form-group form-group-default form-group-default-select2 required  @error('type') has-error @enderror">
                     <label class="">Type</label>
                     <select name="type" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
@@ -86,7 +93,7 @@
                     @error('priority')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div class="form-group form-group-default required @error('hours') has-error @enderror">
                     <label>Estimated Hours</label>
                     <input type="number" class="form-control" value="{{ old('hours') }}" name="hours" placeholder="Enter Estimated Hours" required>

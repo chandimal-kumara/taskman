@@ -2,11 +2,7 @@
 
 @section('content')
 
-<style>
-  .box{ margin:5px; }
-  .link a { color:blue; }
-  .link a:hover { color:#6DC0F9; }
-</style>
+@include('custom/css')
 
 <!-- START JUMBOTRON -->
 <div class="jumbotron" data-pages="parallax">

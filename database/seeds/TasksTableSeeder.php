@@ -12,6 +12,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'WEB00001',
                 'title'            =>   'This is first seed?',
+                'department'       =>   3,
                 'type'             =>   'WEB',
                 'priority'         =>   'LW',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -26,6 +27,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'NET00002',
                 'title'            =>   'Why do we use it?',
+                'department'       =>   3,
                 'type'             =>   'NET',
                 'priority'         =>   'MD',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -40,6 +42,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'SFT00003',
                 'title'            =>   'What is Lorem Ipsum?',
+                'department'       =>   3,
                 'type'             =>   'SFT',
                 'priority'         =>   'HG',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -54,6 +57,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'HRD00004',
                 'title'            =>   'Where can I get some?',
+                'department'       =>   3,
                 'type'             =>   'HRD',
                 'priority'         =>   'MD',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -68,6 +72,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'NET00005',
                 'title'            =>   'Why do we use it?',
+                'department'       =>   3,
                 'type'             =>   'NET',
                 'priority'         =>   'LW',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -82,6 +87,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'WEB00006',
                 'title'            =>   'Where does it come from?',
+                'department'       =>   3,
                 'type'             =>   'WEB',
                 'priority'         =>   'LW',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -96,6 +102,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'SFT00007',
                 'title'            =>   'What is Lorem Ipsum?',
+                'department'       =>   3,
                 'type'             =>   'SFT',
                 'priority'         =>   'MD',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -110,6 +117,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'SFT00008',
                 'title'            =>   'What is Lorem Ipsum?',
+                'department'       =>   3,
                 'type'             =>   'NET',
                 'priority'         =>   'HG',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -124,6 +132,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'SFT00009',
                 'title'            =>   'What is Lorem Ipsum?',
+                'department'       =>   3,
                 'type'             =>   'WEB',
                 'priority'         =>   'MD',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -138,6 +147,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'SFT00010',
                 'title'            =>   'What is Lorem Ipsum?',
+                'department'       =>   3,
                 'type'             =>   'NET',
                 'priority'         =>   'HG',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -152,6 +162,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'SFT00011',
                 'title'            =>   'What is Lorem Ipsum?',
+                'department'       =>   3,
                 'type'             =>   'SFT',
                 'priority'         =>   'LW',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 
@@ -166,6 +177,7 @@ class TasksTableSeeder extends Seeder
             [
                 'task_code'        =>   'HRD00012',
                 'title'            =>   'Where does it come from?',
+                'department'       =>   3,
                 'type'             =>   'HRD',
                 'priority'         =>   'MD',
                 'description'      =>   'into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ', 

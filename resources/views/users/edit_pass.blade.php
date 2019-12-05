@@ -2,12 +2,7 @@
 
 @section('content')
 
-<style>
-  .has-error { background-color: rgba(245, 87, 83, 0.1);}
-  .link a { color:blue; }
-  .link a:hover { color:#6DC0F9; }
-  .box{ margin:5px; }
-</style>
+@include('custom/css')
 
 <!-- START JUMBOTRON -->
 <div class="jumbotron" data-pages="parallax">

@@ -2,11 +2,7 @@
 
 @section('content')
 
-<style>
-  .has-error { background-color: rgba(245, 87, 83, 0.1);}
-  .link a { color:blue; }
-  .link a:hover { color:#6DC0F9; }
-</style>
+@include('custom/css')
 
 <!-- START JUMBOTRON -->
 <div class="jumbotron" data-pages="parallax">
@@ -52,11 +48,23 @@
         {{csrf_field()}}
         @method('PUT')
           <div class="row clearfix">         
-            <div class="col-md-9">
+            <div class="col-md-5">
               <div class="form-group form-group-default required @error('title') has-error @enderror">
                 <label>Title</label>
                 <input type="text" value="{{ $tasks->title }}" class="form-control" name="title" placeholder="Enter Task Title here" required>
                 @error('title')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group form-group-default form-group-default-select2 required @error('department') has-error @enderror">
+                <label>Department</label>
+                <select name="department" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
+                  <option value="Choose...">---- Choose ----</option><!--selected by default-->   
+                    @foreach($departments as $department)
+                      <option value="{{ $department->id }}"  @if ($tasks->department == $department->id) selected @endif > {{ $department->dep_id }} </option>
+                    @endforeach
+                </select>
+                @error('department')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
               </div>
             </div>
             <div class="col-md-3">
