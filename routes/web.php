@@ -17,6 +17,7 @@ Route::get('/tasks/active_tasks', 'MyViewController@active_tasks')->name('task.a
 Route::get('/tasks/onhold_tasks', 'MyViewController@onhold_tasks')->name('task.onhold_tasks');
 Route::get('/tasks/cancelled_tasks', 'MyViewController@cancelled_tasks')->name('task.cancelled_tasks');
 Route::get('/tasks/completed_tasks', 'MyViewController@completed_tasks')->name('task.completed_tasks');
+
 Route::delete('/tasks/delete_task/{id}', 'TaskController@destroy_task')->name('task.destroy_task');
 Route::put('/tasks/assign_task/{id}', 'TaskController@assign_task')->name('task.assign_task');
 Route::put('/tasks/accept_task/{id}', 'TaskController@accept_task')->name('task.accept_task');

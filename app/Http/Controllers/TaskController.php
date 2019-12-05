@@ -81,11 +81,6 @@ class TaskController extends Controller
         return view('tasks/view_task', $data);   
     }
 
-
-
-
-
-
     public function accept_task($id)
     {    
         DB::beginTransaction(); 
@@ -174,12 +169,6 @@ class TaskController extends Controller
             return redirect('/tasks/view_task')->with('tabName', 'active')->withInput()->with('error','Something Went Wrong!');
         }   
     }
-
-
-
-
-
-
 
     public function unhold_task( Request $request, $id)
     {    

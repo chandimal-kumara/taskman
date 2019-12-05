@@ -27,10 +27,10 @@ class ManagerViewController extends Controller
 
     public function dispatched_tasks()
     {
-        $data['types']          =   TaskTypes::all();
-        $data['users']          =   User::all();  
-        $data['tabName']        =   'assigned';                                       
-        $data['assigned_tasks'] =   DB::table('tasks')->where('task_status', 'assigned')->latest()->paginate(5);    
+        $data['types']              =   TaskTypes::all();
+        $data['users']              =   User::all();  
+        $data['tabName']            =   'assigned';                                               
+        $data['dispatched_tasks']   =   DB::table('tasks')->where('task_status', '=', 'assigned')->orWhere('task_status', '=', 'completed')->orWhere('task_status', '=', 'cancelled')->latest()->paginate(5);    
 
         return view('tasks/manager_view/dispatched_tasks', $data)->with('i', (request()->input('page', 1) - 1) * 10);        
     }

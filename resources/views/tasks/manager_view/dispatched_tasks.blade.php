@@ -54,12 +54,13 @@
                                         <th class="task_th_10">Task ID</th>
                                         <th class="task_th_25">Title</th>
                                         <th class="task_th_25">type</th>
-                                        <th class="task_th_25">priority</th>
+                                        <th class="task_th_15">priority</th>
                                         <th class="task_th_15">Estimate Hours</th>                                        
+                                        <th class="task_th_10">Status</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($assigned_tasks as $task)
+                                @foreach($dispatched_tasks as $task)
                                 @if($task->created == Auth::user()->id || $task->assign == Auth::user()->id)
                                     <tr>
                                       <td class="v-align-middle">
@@ -78,6 +79,15 @@
                                       </td>
                                       <td class="v-align-middle">
                                           <p>{{$task->estimated_hours}}</p>
+                                      </td>
+                                      <td class="v-align-middle">
+                                        @if($task->task_status == 'completed')
+                                            <span class="label label-success">{{ $task->task_status }}</span>
+                                        @elseif($task->task_status == 'cancelled')
+                                            <span class="label label-warning">{{ $task->task_status }}</span>
+                                        @else
+                                            <span class="label label-info">{{ $task->task_status }}</span>
+                                        @endif
                                       </td>                                        
                                     </tr>
                                     @endif
@@ -89,7 +99,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="pull-right align-links">
-                                    {!! $assigned_tasks->links() !!}
+                                    {!! $dispatched_tasks->links() !!}
                                 </div>
                             </div>
                         </div>
