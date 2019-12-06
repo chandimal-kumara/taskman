@@ -59,11 +59,11 @@ class UsersTableSeeder extends Seeder
             ],
 
             [
-                'user_id'           =>  'kelum_m6',
-                'name'              =>  'kelum',
-                'email'             =>  'kelum@erp.com',
+                'user_id'           =>  'kalum_m6',
+                'name'              =>  'kalum',
+                'email'             =>  'kalum@erp.com',
                 'type'              =>  'manager',
-                'password'          =>  bcrypt('kelum'),
+                'password'          =>  bcrypt('kalum'),
                 'status'            =>  'active',
             ],
 
