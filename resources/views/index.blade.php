@@ -18,11 +18,10 @@
   </div>
 </div>
 <!-- END JUMBOTRON -->
-<!-- START CONTAINER FLUID -->
-<div class=" container-fluid   container-fixed-lg" class="bg"> 
-    
-  <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
+<!-- START CONTAINER FLUID -->
+<div class=" container-fluid   container-fixed-lg" class="bg">     
+  <!-- BEGIN PlACE PAGE CONTENT HERE -->
   <div class="card card-transparent message">
     <div class="card-block" style="padding:0;">
       <div class="alert alert-info" role="alert">

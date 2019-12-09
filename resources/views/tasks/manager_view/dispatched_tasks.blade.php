@@ -84,7 +84,7 @@
                                         @if($task->task_status == 'completed')
                                             <span class="label label-success">{{ $task->task_status }}</span>
                                         @elseif($task->task_status == 'cancelled')
-                                            <span class="label label-warning">{{ $task->task_status }}</span>
+                                            <span class="label label-danger">{{ $task->task_status }}</span>
                                         @else
                                             <span class="label label-info">{{ $task->task_status }}</span>
                                         @endif

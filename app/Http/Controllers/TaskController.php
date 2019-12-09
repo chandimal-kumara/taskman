@@ -12,6 +12,7 @@ use App\Department;
 use App\Http\Controllers\Auth;
 use DB;
 use Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TaskController extends Controller
 {
