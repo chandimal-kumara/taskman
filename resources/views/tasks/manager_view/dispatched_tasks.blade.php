@@ -60,8 +60,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($dispatched_tasks as $task)
-                                @if($task->created == Auth::user()->id || $task->assign == Auth::user()->id)
+                                @foreach($dispatched_tasks as $task)                                
                                     <tr>
                                       <td class="v-align-middle">
                                         <p class="link"><a href="/tasks/view_task/{{$task->id}}"></i>{{$task->task_code}}</a></p>
@@ -81,17 +80,18 @@
                                           <p>{{$task->estimated_hours}}</p>
                                       </td>
                                       <td class="v-align-middle">
-                                        @if($task->task_status == 'completed')
-                                            <span class="label label-success">{{ $task->task_status }}</span>
+                                        @if($task->task_status == 'assigned')
+                                            <span class="label label-warning">{{ $task->task_status }}</span>
                                         @elseif($task->task_status == 'cancelled')
-                                            <span class="label label-danger">{{ $task->task_status }}</span>
-                                        @else
                                             <span class="label label-info">{{ $task->task_status }}</span>
+                                        @elseif($task->task_status == 'onhold')
+                                            <span class="label label-master">{{ $task->task_status }}</span>
+                                        @else
+                                            <span class="label label-complete">{{ $task->task_status }}</span>
                                         @endif
                                       </td>                                        
-                                    </tr>
-                                    @endif
-                                    @endforeach 
+                                    </tr>                                
+                                @endforeach 
                                 </tbody>
                             </table>
                         </div>

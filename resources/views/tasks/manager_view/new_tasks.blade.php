@@ -65,8 +65,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach($new_tasks as $task)
-                            @if($task->created == Auth::user()->id)
+                            @foreach($new_tasks as $task)                          
                               <tr>
                                 <td class="v-align-middle">
                                     <p class="link"><a href="/tasks/view_task/{{$task->id}}">{{$task->task_code}}</a></p>
@@ -85,8 +84,7 @@
                                 <td class="v-align-middle">
                                     <p>{{$task->estimated_hours}}</p>
                                 </td>    
-                              </tr>
-                            @endif
+                              </tr>                            
                             @endforeach 
                           </tbody>
                         </table>

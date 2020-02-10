@@ -22,9 +22,11 @@
         </span>
       </button>
       <div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
-        <a href="#" class="dropdown-item"><i class="pg-settings_small"></i> Settings</a>
+
+   <!--      <a href="#" class="dropdown-item"><i class="pg-settings_small"></i> Settings</a>
         <a href="{{ route('user.add_user') }}" class="dropdown-item"><i class="fa fa-user-plus"></i> Add User</a>
-        <a href="{{ route('user.users') }}" class="dropdown-item"><i class="fa fa-address-book"></i> Users</a>
+        <a href="{{ route('user.users') }}" class="dropdown-item"><i class="fa fa-address-book"></i> Users</a> -->
+        
         <a href="{{ route('logout') }}" class="clearfix bg-master-lighter dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
           <span class="pull-left">Logout</span>
           <span class="pull-right"><i class="pg-power"></i></span>

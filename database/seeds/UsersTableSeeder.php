@@ -16,13 +16,13 @@ class UsersTableSeeder extends Seeder
             [
                 'user_id'           =>  'admin_a1',
                 'name'              =>  'admin',
-                'email'             =>  'admin@erp.com',
+                'email'             =>  'kumara.8375@gmail.com',
                 'type'              =>  'admin',
-                'password'          =>  bcrypt('admin'),
+                'password'          =>  bcrypt('abc@1234'),
                 'status'            =>  'active',
             ],
 
-            [
+            /* [
                 'user_id'           =>  'manager_m2',
                 'name'              =>  'manager',
                 'email'             =>  'manager@erp.com',
@@ -74,7 +74,7 @@ class UsersTableSeeder extends Seeder
                 'type'              =>  'manager',
                 'password'          =>  bcrypt('suneth'),
                 'status'            =>  'active',
-            ],
+            ], */
         ];
             
         User::insert($users);

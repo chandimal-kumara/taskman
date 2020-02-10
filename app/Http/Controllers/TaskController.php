@@ -9,9 +9,9 @@ use App\User;
 use App\TaskTypes;
 use App\TaskComment;
 use App\Department;
-use App\Http\Controllers\Auth;
 use DB;
 use Validator;
+use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TaskController extends Controller
@@ -23,13 +23,22 @@ class TaskController extends Controller
  
     public function index()
     {
-        $data['tasks']      =   Task::get()->count();
+        $data['tasks']      =  10; 
+        $data['new']        =   10;
+        $data['assigned']   =  10;
+        $data['active']     =  10;
+        $data['onhold']     =  10;
+        $data['cancelled']  =  10;
+        $data['completed']  =  10;
+
+       /*  $data['tasks']      =   Task::get()->count();
         $data['new']        =   DB::table('tasks')->where('task_status', 'new')->get()->count();
         $data['assigned']   =   DB::table('tasks')->where('task_status', 'assigned')->get()->count();
         $data['active']     =   DB::table('tasks')->where('task_status', 'active')->get()->count();
         $data['onhold']     =   DB::table('tasks')->where('task_status', 'onhold')->get()->count();
         $data['cancelled']  =   DB::table('tasks')->where('task_status', 'cancelled')->get()->count();
-        $data['completed']  =   DB::table('tasks')->where('task_status', 'completed')->get()->count();
+        $data['completed']  =   DB::table('tasks')->where('task_status', 'completed')->get()->count(); */
+        
         return view('index', $data);
     } 
 

@@ -26,6 +26,7 @@
                 <span class="bg-success icon-thumbnail"><i class="pg-home"></i></span>
             </li>
 
+        @if(Auth::user()->id == 1)
             <li>
                 <a href="#"><span class="title">Users</span>
                 <span class="arrow"></span></a>
@@ -41,6 +42,7 @@
                     </li>
                 </ul>
             </li>
+        @endif
 
             <li>
                 <a href="#"><span class="title">Tasks</span>
