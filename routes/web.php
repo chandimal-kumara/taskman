@@ -45,3 +45,12 @@ Route::delete('/users/delete_user/{id}', 'UserController@destroy_user')->name('u
 
 // Comment Routes
 Route::post('/save_comment', 'TaskCommentController@save_comment')->name('taskComment.save_comment');
+
+// Task Catagory Routes
+Route::get('/task_catagories', 'TaskCatagoryController@task_catagories')->name('task_catagories.task_catagories');
+Route::get('/task_catagories/add_catagory', 'TaskCatagoryController@add_task_catagory')->name('task_catagories.add_task_catagory');
+Route::post('/task_catagories/save_catagory', 'TaskCatagoryController@save_task_catagory')->name('task_catagories.save_task_catagory');
+Route::get('/task_catagories/edit_catagory/{id}', 'TaskCatagoryController@edit_task_catagory')->name('task_catagories.edit_task_catagory');
+Route::put('/task_catagories/update_catagory/{id}', 'TaskCatagoryController@update_task_catagory')->name('task_catagories.update_task_catagory');
+Route::delete('/task_catagories/delete_catagory/{id}', 'TaskCatagoryController@destroy_task_catagory')->name('task_catagories.destroy_task_catagory');
+

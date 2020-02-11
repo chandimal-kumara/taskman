@@ -68,7 +68,7 @@
               </div>
             </div>
             <div class="col-md-3">
-              <div class="form-group form-group-default required @error('title') has-error @enderror">
+              <div class="form-group form-group-default required @error('task_code') has-error @enderror">
                 <label>Task Code</label>
                 <input style="color:gray;" type="text" value="{{ $tasks->task_code }}" class="form-control" name="task_code" readonly>
               </div>
@@ -77,15 +77,15 @@
 
           <div class="row">
             <div class="col-md-5">                              
-              <div class="form-group form-group-default form-group-default-select2 required  @error('type') has-error @enderror">
-                <label class="">Type</label>
-                <select name="type" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
+              <div class="form-group form-group-default form-group-default-select2 required  @error('catagory') has-error @enderror">
+                <label class="">Catagory</label>
+                <select name="catagory" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
                   <option value="Choose...">---- Choose ----</option><!--selected by default-->   
-                    @foreach($types as $type)
-                        <option value="{{ $type->code }}"  @if ($tasks->type == $type->code) selected @endif > {{ $type->name }} </option>
+                    @foreach($catagories as $catagory)
+                        <option value="{{ $catagory->code }}"  @if ($tasks->catagory == $catagory->code) selected @endif > {{ $catagory->name }} </option>
                     @endforeach
                 </select>
-                @error('type')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                @error('catagory')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
               </div>              
             </div>
             

@@ -92,8 +92,8 @@
                                                 <p>{{str_limit($task->title, 25)}}</p>
                                             </td>
                                             <td class="v-align-middle">
-                                                @foreach($types as $type)
-                                                <p>@if ($task->type == $type->code) {{$type->name}} @endif</p> 
+                                                @foreach($catagories as $catagory)
+                                                <p>@if ($task->catagory == $catagory->code) {{$catagory->name}} @endif</p> 
                                                 @endforeach
                                             </td>
                                             <td class="v-align-middle">

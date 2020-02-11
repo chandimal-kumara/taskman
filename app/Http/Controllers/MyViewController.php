@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use App\User;
-use App\TaskTypes;
+use App\TaskCatagory;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -19,7 +19,7 @@ class MyViewController extends Controller
 
     public function assigned_tasks()
     {
-        $data['types']          =   TaskTypes::all();
+        $data['catagories']     =   TaskCatagory::all();
         $data['users']          =   User::all(); 
         $data['tabName']        =   'assigned';
         $data['assigned_tasks'] =   Task::where([['task_status', '=', 'assigned'],['assign', '=', Auth::user()->id],])->latest()->paginate(5);
@@ -29,7 +29,7 @@ class MyViewController extends Controller
 
     public function active_tasks()
     {
-        $data['types']          =   TaskTypes::all();
+        $data['catagories']     =   TaskCatagory::all();
         $data['users']          =   User::all();        
         $data['tabName']        =   'active';        
         $data['active_tasks']   =   Task::where([['task_status', '=', 'active'],['assign', '=', Auth::user()->id],])->latest()->paginate(5); 
@@ -39,7 +39,7 @@ class MyViewController extends Controller
 
     public function onhold_tasks()
     {
-        $data['types']          =   TaskTypes::all();
+        $data['catagories']     =   TaskCatagory::all();
         $data['users']          =   User::all();            
         $data['tabName']        =   'onhold';    
         $data['onhold_tasks']   =   Task::where([['task_status', '=', 'onhold'],['assign', '=', Auth::user()->id],])->latest()->paginate(5); 
@@ -49,7 +49,7 @@ class MyViewController extends Controller
 
     public function cancelled_tasks()
     {
-        $data['types']              =   TaskTypes::all();
+        $data['catagories']         =   TaskCatagory::all();
         $data['users']              =   User::all();         
         $data['tabName']            =   'cancelled';       
         $data['cancelled_tasks']    =   Task::where([['task_status', '=', 'cancelled'],['assign', '=', Auth::user()->id],])->latest()->paginate(5); 
@@ -59,7 +59,7 @@ class MyViewController extends Controller
 
     public function completed_tasks()
     {
-        $data['types']              =   TaskTypes::all();
+        $data['catagories']         =   TaskCatagory::all();
         $data['users']              =   User::all();     
         $data['tabName']            =   'completed';           
         $data['completed_tasks']    =   Task::where([['task_status', '=', 'completed'],['created', '=', Auth::user()->id],])

@@ -70,15 +70,15 @@
 
               <div class="row">
                 <div class="col-md-4">                              
-                  <div class="form-group form-group-default form-group-default-select2 required  @error('type') has-error @enderror">
-                    <label class="">Type</label>
-                    <select name="type" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
+                  <div class="form-group form-group-default form-group-default-select2 required  @error('catagory') has-error @enderror">
+                    <label class="">Catagory</label>
+                    <select name="catagory" class="full-width" data-placeholder="Select Type" data-init-plugin="select2">
                       <option value="Choose...">---- Choose ----</option><!--selected by default-->
-                        @foreach($types as $type)
-                      <option value="{{ $type->code }}"  @if(old('type') == $type->code) selected @endif> {{ $type->name }} </option>
+                        @foreach($catagories as $catagory)
+                          <option value="{{ $catagory->code }}"  @if(old('catagory') == $catagory->code) selected @endif> {{ $catagory->name }} </option>
                         @endforeach
                     </select>
-                    @error('type')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
+                    @error('catagory')<small id="ageHelp" class="text-danger">{{ $message }}</small>@enderror
                   </div>              
                 </div>
                 

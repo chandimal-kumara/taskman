@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Task;
 use App\User;
-use App\TaskTypes;
+use App\TaskCatagory;
 use App\TaskComment;
 use App\Department;
 use DB;
@@ -37,7 +37,7 @@ class TaskController extends Controller
         $data['active']     =   DB::table('tasks')->where('task_status', 'active')->get()->count();
         $data['onhold']     =   DB::table('tasks')->where('task_status', 'onhold')->get()->count();
         $data['cancelled']  =   DB::table('tasks')->where('task_status', 'cancelled')->get()->count();
-        $data['completed']  =   DB::table('tasks')->where('task_status', 'completed')->get()->count(); */
+        $data['completed']  =   DB::table('tasks')->where('task_status', 'completed')->get()->count();  */
         
         return view('index', $data);
     } 
@@ -83,10 +83,10 @@ class TaskController extends Controller
                                 ->where('task_comments.task_id', '=', $id)
                                 ->orderBy('task_comments.created_at','desc')
                                 ->get();
-        $data['task']           = Task::find($id);
-        $data['types']          = TaskTypes::get();
-        $data['departments']    = Department::get();
-        $data['users']          = User::get();
+        $data['task']           =   Task::find($id);
+        $data['catagories']       =   TaskCatagory::all();
+        $data['departments']    =   Department::get();
+        $data['users']          =   User::get();
         //dd($comment);
         return view('tasks/view_task', $data);   
     }
@@ -228,16 +228,16 @@ class TaskController extends Controller
 
     public function add_task()
     {
-        $data['types']          =   TaskTypes::get();
+        $data['catagories']     =   TaskCatagory::all();
         $data['departments']    =   Department::get();
         return view('tasks/add_task', $data);
     }
 
     public function edit_task($id)
     {
-        $data['tasks']          = Task::find($id);
-        $data['types']          = TaskTypes::get();
-        $data['departments']    = Department::get();
+        $data['tasks']          =   Task::find($id);
+        $data['catagories']     =   TaskCatagory::all();
+        $data['departments']    =   Department::get();
         return view('tasks/edit_task', $data);
     }
 
@@ -246,7 +246,7 @@ class TaskController extends Controller
         $validator = Validator::make($request->all(), [
             'title'             => 'required|string|min:10',
             'department'        => 'required|not_in:Choose...',
-            'type'              => 'required|not_in:Choose...',
+            'catagory'          => 'required|not_in:Choose...',
             'priority'          => 'required',
             'description'       => 'required|min:50', 
             'hours'             => 'required|numeric',
@@ -256,7 +256,7 @@ class TaskController extends Controller
         {
            // dd($validator);
             return redirect::to('/tasks/add_task')->withErrors($validator)->withInput()->with('error', 'Please Check Validation Requirments');
-        }
+        } 
 
         DB::beginTransaction(); 
         
@@ -265,7 +265,7 @@ class TaskController extends Controller
             $task = new Task();
             $task->title            = $request->get('title');
             $task->department       = $request->get('department');
-            $task->type             = $request->get('type');
+            $task->catagory         = $request->get('catagory');
             $task->priority         = $request->get('priority');
             $task->description      = $request->get('description');
             $task->estimated_hours  = $request->get('hours');           
@@ -274,7 +274,7 @@ class TaskController extends Controller
 
             $task->save();
 
-            $str = $request->type;
+            $str = strtoupper($request->catagory);
             $zero = "";
             $lenght= strlen($task->id);
           
@@ -291,7 +291,7 @@ class TaskController extends Controller
 
             $task->save(); 
               
-            DB::commit();
+            DB::commit(); 
  
             return redirect('/tasks/new_tasks')->with('success_new', 'Task is Successfully Saved');
         }
@@ -308,7 +308,7 @@ class TaskController extends Controller
         $validator = Validator::make($request->all(), [
             'title'             => 'required|string|min:10',
             'department'        => 'required|not_in:Choose...',
-            'type'              => 'required|not_in:Choose...',
+            'catagory'          => 'required|not_in:Choose...',
             'priority'          => 'required',
             'description'       => 'required|min:50', 
             'hours'             => 'required|numeric',
@@ -327,11 +327,26 @@ class TaskController extends Controller
             $task = Task::find($id);
             $task->title            = $request->get('title');
             $task->department       = $request->get('department');
-            $task->type             = $request->get('type');
+            $task->catagory         = $request->get('catagory');
             $task->priority         = $request->get('priority');
             $task->description      = $request->get('description');
             $task->estimated_hours  = $request->get('hours');
             $task->created          = \Auth::user()->id;
+
+            $str = strtoupper($request->catagory);
+            $zero = "";
+            $lenght= strlen($task->id);
+          
+            if ($lenght!=5) 
+            {
+                for ($i=0; $i < 5-$lenght; $i++) 
+                { 		
+                    $zero .= "0";
+                }
+            }
+          
+            $code = $str.$zero.$task->id;
+            $task->task_code    = $code;
 
             $task->save();
 

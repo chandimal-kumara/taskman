@@ -8,8 +8,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTableSeeder::class);
        // $this->call(TasksTableSeeder::class);
-       // $this->call(TaskTypesTableSeeder::class);
        // $this->call(TaskCommentsTableSeeder::class);
-       // $this->call(DepartmentsTableSeeder::class);
+        $this->call(DepartmentsTableSeeder::class);
     }
 }

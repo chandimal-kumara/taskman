@@ -1,6 +1,8 @@
 <style>
-.menu-items li a span { color:white; }
-.menu-items li a span:hover { color:#D8DADC; }
+    .menu-items li a span { color:white; }
+    .menu-items li a span:hover { color:#D8DADC; }
+    .title {  }
+    .arrow {  }
 </style>
 
 <nav class="page-sidebar" data-pages="sidebar">
@@ -28,8 +30,8 @@
 
         @if(Auth::user()->id == 1)
             <li>
-                <a href="#"><span class="title">Users</span>
-                <span class="arrow"></span></a>
+                <a href="#"><span class="title" style="width:100px;">Users</span>
+                <span class="arrow" style="margin:0px;padding:2px;"></span></a>
                 <span class="icon-thumbnail"><i class="fa fa-users"></i></span>
                 <ul class="sub-menu">
                     <li class="">
@@ -45,8 +47,8 @@
         @endif
 
             <li>
-                <a href="#"><span class="title">Tasks</span>
-                <span class="arrow"></span></a>
+                <a href="#"><span class="title" style="width:100px;">Tasks</span>
+                <span class="arrow" style="margin:0px;padding:2px;"></span></a>
                 <span class="icon-thumbnail"><i class="fa fa-tasks"></i></span>
                 <ul class="sub-menu">            
                     <li class="">
@@ -60,6 +62,22 @@
                     <li class="">
                         <a href="{{ route('task.all_tasks') }}">All Tasks</a>
                         <span class="icon-thumbnail"><i class="fa fa-list"></i></span>
+                    </li>
+                </ul>
+            </li>  
+
+            <li>
+                <a href="#"><span class="title" style="width:100px;">Task Catagory</span>
+                <span class="arrow" style="margin:0px;padding:2px;"></span></a>
+                <span class="icon-thumbnail"><i class="fa fa-list-alt"></i></span>
+                <ul class="sub-menu">            
+                    <li class="">
+                        <a href="{{ route('task_catagories.add_task_catagory') }}">Add Catagory</a>
+                        <span class="icon-thumbnail"><i class="fa fa-plus-square"></i></span>
+                    </li>
+                    <li class="">
+                        <a href="{{ route('task_catagories.task_catagories') }}">Task Catagories</a>
+                        <span class="icon-thumbnail"><i class="fa fa-list-ul"></i></span>
                     </li>
                 </ul>
             </li>  

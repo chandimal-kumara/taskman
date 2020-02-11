@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use App\User;
-use App\TaskTypes;
+use App\TaskCatagory;
 use DB;
 
 class AllViewController extends Controller
@@ -17,7 +17,7 @@ class AllViewController extends Controller
 
     public function all_tasks(Request $request)
     {           
-        $data['types']         =    TaskTypes::all();
+        $data['catagories']    =   TaskCatagory::all();
         $data['users']         =    User::all();        
         $task_search           =    $request->input('task_search');
         $data['task_search']   =    $task_search;

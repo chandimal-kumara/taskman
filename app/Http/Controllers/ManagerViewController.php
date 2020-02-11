@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use App\User;
-use App\TaskTypes;
+use App\TaskCatagory;
 use DB;
 use Auth;
 
@@ -18,7 +18,7 @@ class ManagerViewController extends Controller
 
     public function new_tasks()
     {
-        $data['types']          =   TaskTypes::all();
+        $data['catagories']     =   TaskCatagory::all();
         $data['users']          =   User::all();
         $data['tabName']        =   'new';                 
         $data['new_tasks']      =   Task::where([['task_status', '=', 'new'],['created', '=', Auth::user()->id],])->latest()->paginate(5); 
@@ -28,7 +28,7 @@ class ManagerViewController extends Controller
 
     public function dispatched_tasks()
     {
-        $data['types']              =   TaskTypes::all();
+        $data['catagories']         =   TaskCatagory::all();
         $data['users']              =   User::all();  
         $data['tabName']            =   'assigned';                                               
         //$data['dispatched_tasks']   =   Task::where('task_status', '=', 'assigned')->orWhere('task_status', '=', 'active')->orWhere('task_status', '=', 'cancelled')->orWhere('task_status', '=', 'onhold')->latest()->paginate(5);    

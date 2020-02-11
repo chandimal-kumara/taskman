@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('task_code')->nullable()->unique();
             $table->string('title');
             $table->unsignedbigInteger('department')->nullable();
-            $table->string('type');
+            $table->string('catagory');
             $table->string('priority');
             $table->longText('description');
             $table->integer('estimated_hours');

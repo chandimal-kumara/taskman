@@ -59,7 +59,7 @@
                             <tr>
                                 <th class="task_th_10">Task ID</th>
                                 <th class="task_th_25">Title</th>
-                                <th class="task_th_25">type</th>
+                                <th class="task_th_25">Catagory</th>
                                 <th class="task_th_25">priority</th>
                                 <th class="task_th_15">Estimate Hours</th>
                             </tr>
@@ -74,8 +74,8 @@
                                     <p>{{str_limit($task->title, 25)}}</p>
                                 </td>
                                 <td class="v-align-middle">
-                                    @foreach($types as $type)
-                                    <p>@if ($task->type == $type->code) {{$type->name}} @endif</p> 
+                                    @foreach($catagories as $catagory)
+                                    <p>@if ($task->catagory == $catagory->code) {{$catagory->name}} @endif</p> 
                                     @endforeach
                                 </td>
                                 <td class="v-align-middle">

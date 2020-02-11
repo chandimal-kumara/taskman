@@ -42,10 +42,10 @@
                       <td class="v-align-middle semi-bold">{{ $task->task_code }}</td>
                     </tr>
                     <tr role="row" class="even">
-                      <td class="v-align-middle semi-bold sorting_1"><span class="title">Type :</span></td>                            
+                      <td class="v-align-middle semi-bold sorting_1"><span class="title">Catagory :</span></td>                            
                       <td class="v-align-middle semi-bold">
-                        @foreach($types as $type)
-                          @if ($task->type == $type->code) {{$type->name}} @endif
+                        @foreach($catagories as $catagory)
+                          @if ($task->catagory == $catagory->code) {{$catagory->name}} @endif
                         @endforeach
                       </td>
                     </tr>                
